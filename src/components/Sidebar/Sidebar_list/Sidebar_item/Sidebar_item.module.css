@@ -1,0 +1,12 @@
+.list__item a {
+    color: black;
+}
+.list__item {
+    transition-duration: 0.3s;
+    width: 125px;
+}
+
+.list__item:hover {
+    transform: scale(1.1);
+}
+
