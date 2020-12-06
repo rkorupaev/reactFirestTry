@@ -1,0 +1,14 @@
+.profile_feed {
+
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+textarea {
+    resize: none;
+    width: 95%;
+    height: 100px;
+    padding: 20px;
+}

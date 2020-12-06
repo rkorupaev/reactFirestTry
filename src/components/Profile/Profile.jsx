@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./Profile.module.css";
+import Profile_card from "./Profile_card/Profile_card";
+import Profile_feed from "./Profile_feed/Profile_feed";
 
-const Profile = ()=> {
+const Profile = () => {
     return (
         <section className={styles.profile}>
-            <div>
-                <h2>Roman Korupaev</h2>
-                <img src="https://loremflickr.com/320/240" />
-            </div>
+            <Profile_card/>
+            <Profile_feed/>
         </section>
     );
 }
