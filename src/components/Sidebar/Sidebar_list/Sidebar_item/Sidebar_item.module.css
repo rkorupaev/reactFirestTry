@@ -1,9 +1,15 @@
 .list__item a {
     color: black;
 }
+
 .list__item {
     transition-duration: 0.3s;
     width: 125px;
+}
+
+.list__item .active {
+    transition-duration: 0.1s;
+    font-weight: bold;
 }
 
 .list__item:hover {
