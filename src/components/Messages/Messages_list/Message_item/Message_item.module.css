@@ -1,0 +1,14 @@
+.message_item {
+    display: flex;
+    align-items: center;
+    min-height: 20px;
+    border-radius: 5px;
+    background-color: bisque;
+    margin-bottom: 15px;
+    padding: 15px 30px;
+    transition-duration: 0.3s;
+}
+
+.message_item:last-child {
+    margin-bottom: 0;
+}

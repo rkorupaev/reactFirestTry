@@ -1,0 +1,8 @@
+.dialogs_list {
+    padding: 0;
+    padding-right: 25px;
+    width: 250px;
+    border-right: solid 2px gray;
+    display: flex;
+    flex-direction: column;
+}
