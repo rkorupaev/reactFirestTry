@@ -5,9 +5,9 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Content from "./components/Content/Content";
 import generalStyles from "./components/General.module.css";
 import styles from "./components/Main.module.css";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
-const App = () => {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className="App">
@@ -15,7 +15,7 @@ const App = () => {
                     <Header/>
                     <main className={`${generalStyles.container} ${styles.main__container}`}>
                         <Sidebar/>
-                        <Content/>
+                        <Content dialogsArray={props.dialogsArray} messagesArray={props.messagesArray}/>
                     </main>
                 </div>
             </div>

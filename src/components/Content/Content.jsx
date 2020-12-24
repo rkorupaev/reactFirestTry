@@ -7,14 +7,18 @@ import Video from "../Video/Mucis";
 import Settings from "../Settings/Settings";
 import Profile from "../Profile/Profile";
 
-const Content = () => {
+const Content = (props) => {
     return (
         <section className={styles.content}>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/messages" component={Messages}/>
-            <Route path="/music" component={Music}/>
-            <Route path="/video" component={Video}/>
-            <Route path="/settings" component={Settings}/>
+            <Route path="/profile" render={() => <Profile/>}/>
+            <Route path="/messages" render={() => <Messages dialogsArray={props.dialogsArray} messagesArray={props.messagesArray}/> }/>
+            <Route path="/music" render={() => <Music/> }/>
+            <Route path="/video" render={() =>
+                <Video/>
+            }/>
+            <Route path="/settings" render={() =>
+                <Settings/>
+            }/>
         </section>
     );
 }
