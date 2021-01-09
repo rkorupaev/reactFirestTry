@@ -15,7 +15,7 @@ const App = (props) => {
                     <Header/>
                     <main className={`${generalStyles.container} ${styles.main__container}`}>
                         <Sidebar/>
-                        <Content dialogsArray={props.dialogsArray} messagesArray={props.messagesArray}/>
+                        <Content state={props.state} />
                     </main>
                 </div>
             </div>

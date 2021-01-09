@@ -6,8 +6,8 @@ import Message_list from "./Messages_list/Messaage_list";
 const Messages = (props) => {
     return (
         <div className={styles.messages_block}>
-            <Dialogs dialogsArray={props.dialogsArray}/>
-            <Message_list messagesArray={props.messagesArray}/>
+            <Dialogs dialogsArray={props.state.dialogsArray}/>
+            <Message_list messagesArray={props.state.messagesArray}/>
         </div>
     );
 }

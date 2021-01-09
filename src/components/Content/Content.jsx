@@ -10,9 +10,9 @@ import Profile from "../Profile/Profile";
 const Content = (props) => {
     return (
         <section className={styles.content}>
-            <Route path="/profile" render={() => <Profile/>}/>
-            <Route path="/messages" render={() => <Messages dialogsArray={props.dialogsArray} messagesArray={props.messagesArray}/> }/>
-            <Route path="/music" render={() => <Music/> }/>
+            <Route path="/profile" render={() => <Profile state={props.state}/>}/>
+            <Route path="/messages" render={() => <Messages state={props.state}/>}/>
+            <Route path="/music" render={() => <Music/>}/>
             <Route path="/video" render={() =>
                 <Video/>
             }/>
