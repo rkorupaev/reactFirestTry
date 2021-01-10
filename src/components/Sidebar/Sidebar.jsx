@@ -3,11 +3,11 @@ import styles from "./Sidebar.module.css";
 import Sidebar_list from "./Sidebar_list/Sidebar_list";
 import FriendsList from "./FriendsList/FriendsList";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     return (
         <section className={styles.sidebar}>
             <Sidebar_list/>
-            <FriendsList />
+            <FriendsList state={props.state}/>
         </section>
     );
 }
