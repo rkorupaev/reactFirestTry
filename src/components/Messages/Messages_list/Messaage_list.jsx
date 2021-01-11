@@ -6,10 +6,21 @@ const Message_list = (props) => {
 
     let messageItemArray = props.messagesArray.map(message => <Message_item item_text={message.item_text}/>);
 
+    let newMessageElement = React.createRef();
+
+    let onButtonCLickHandler = () => {
+        alert(newMessageElement.current.value);
+        newMessageElement.current.value = "";
+    }
+
     return (
-        <ul className={styles.messages_list}>
-            {messageItemArray}
-        </ul>
+        <div>
+            <ul className={styles.messages_list}>
+                {messageItemArray}
+            </ul>
+            <textarea ref={newMessageElement}></textarea>
+            <button onClick={onButtonCLickHandler}>Send</button>
+        </div>
     );
 }
 

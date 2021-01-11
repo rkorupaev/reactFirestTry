@@ -19,6 +19,7 @@ p {
 
 li {
     margin-bottom: 10px;
+    transition-duration: 0.5s;
 }
 
 li:last-child {
