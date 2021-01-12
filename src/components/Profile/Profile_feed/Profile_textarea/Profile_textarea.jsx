@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Profile_textarea.module.css";
 
-const Profile_textarea = () => {
+const Profile_textarea = (props) => {
 
     let newPostTextArea = React.createRef();
 
     let onButtonClickHandler = () => {
-        alert(newPostTextArea.current.value);
+        props.addTextElement(newPostTextArea.current.value);
         newPostTextArea.current.value = "";
     }
 

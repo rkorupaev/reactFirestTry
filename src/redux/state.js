@@ -1,3 +1,5 @@
+import {entireRerender} from "../render";
+
 let state = {
     dialogsPage: {
         messagesArray: [
@@ -40,14 +42,17 @@ let state = {
     profilePage: {
         postsArray: [
             {
+                id: 3,
                 post_text: "Not rly, just kidding)",
                 posts_likes: "15"
             },
             {
+                id: 2,
                 post_text: "I am so cool!",
                 posts_likes: "25"
             },
             {
+                id: 1,
                 post_text: "First post! Hello world!",
                 posts_likes: "135"
             }
@@ -60,6 +65,17 @@ let state = {
             {name: "Kate Pressly"}
         ]
     }
+};
+
+export let addTextElement = (newElementText) => {
+    let newElement = {
+        id: state.profilePage.postsArray.length + 1,
+        post_text: newElementText,
+        posts_likes: 0
+    };
+    state.profilePage.postsArray.unshift(newElement);
+    console.log(state.profilePage.postsArray);
+    entireRerender(state);
 };
 
 
