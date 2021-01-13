@@ -7,7 +7,7 @@ const Profile_feed = (props) => {
     return (
         <div className={styles.profile_feed}>
             <h2>Лента новостей</h2>
-            <Profile_textarea addTextElement={props.addTextElement}/>
+            <Profile_textarea addTextElement={props.addTextElement} changeTextarea={props.changeTextarea} newText={props.state.profilePage.newText}/>
             <Profile_posts postsArray={props.state.profilePage.postsArray}/>
         </div>
     );

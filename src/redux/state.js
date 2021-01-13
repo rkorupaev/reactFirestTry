@@ -56,7 +56,8 @@ let state = {
                 post_text: "First post! Hello world!",
                 posts_likes: "135"
             }
-        ]
+        ],
+        newText: ""
     },
     sidebar: {
         sidebarFriends: [
@@ -67,14 +68,20 @@ let state = {
     }
 };
 
-export let addTextElement = (newElementText) => {
+export let addTextElement = () => {
     let newElement = {
         id: state.profilePage.postsArray.length + 1,
-        post_text: newElementText,
+        post_text: state.profilePage.newText,
         posts_likes: 0
     };
     state.profilePage.postsArray.unshift(newElement);
-    console.log(state.profilePage.postsArray);
+    state.profilePage.newText = '';
+    console.log(state.profilePage.newText);
+    entireRerender(state);
+};
+
+export let changeTextarea = (change) => {
+    state.profilePage.newText = change;
     entireRerender(state);
 };
 

@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
             <div className={styles.profile}>
                 <Profile_card/>
-                <Profile_feed state={props.state} addTextElement={props.addTextElement}/>
+                <Profile_feed state={props.state} addTextElement={props.addTextElement} changeTextarea={props.changeTextarea}/>
             </div>
     );
 }

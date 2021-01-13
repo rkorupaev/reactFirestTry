@@ -15,7 +15,7 @@ const App = (props) => {
                     <Header/>
                     <main className={`${generalStyles.container} ${styles.main__container}`}>
                         <Sidebar state={props.state.sidebar}/>
-                        <Content state={props.state} addTextElement={props.addTextElement}/>
+                        <Content state={props.state} addTextElement={props.addTextElement} changeTextarea={props.changeTextarea}/>
                     </main>
                 </div>
             </div>
