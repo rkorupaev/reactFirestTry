@@ -74,19 +74,35 @@ let store = {
     subscribe(observe) {
         this._callRender = observe;
     },
-    addTextElement() {
-        let newElement = {
-            id: this._state.profilePage.postsArray.length + 1,
-            post_text: this._state.profilePage.newText,
-            posts_likes: 0
-        };
-        this._state.profilePage.postsArray.unshift(newElement);
-        this._state.profilePage.newText = '';
-        this._callRender(this._state);
-    },
-    changeTextarea(change) {
-        this._state.profilePage.newText = change;
-        this._callRender(this._state);
+    // addTextElement() {
+    //     let newElement = {
+    //         id: this._state.profilePage.postsArray.length + 1,
+    //         post_text: this._state.profilePage.newText,
+    //         posts_likes: 0
+    //     };
+    //     this._state.profilePage.postsArray.unshift(newElement);
+    //     this._state.profilePage.newText = '';
+    //     this._callRender(this._state);
+    // },
+    // changeTextarea(change) {
+    //     this._state.profilePage.newText = change;
+    //     this._callRender(this._state);
+    // }
+
+    dispatch(action) {
+        if (action.type === 'ADD_TEXT_ELEMENT') {
+            let newElement = {
+                id: this._state.profilePage.postsArray.length + 1,
+                post_text: this._state.profilePage.newText,
+                posts_likes: 0
+            };
+            this._state.profilePage.postsArray.unshift(newElement);
+            this._state.profilePage.newText = '';
+            this._callRender(this._state);
+        } else if (action.type === 'CHANGE_TEXTAREA') {
+            this._state.profilePage.newText = action.change;
+            this._callRender(this._state);
+        }
     }
 };
 

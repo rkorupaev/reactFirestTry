@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 const Content = (props) => {
     return (
         <section className={styles.content}>
-            <Route path="/profile" render={() => <Profile state={props.state} addTextElement={props.addTextElement} changeTextarea={props.changeTextarea}/>}/>
+            <Route path="/profile" render={() => <Profile state={props.state} dispatch={props.dispatch}/>}/>
             <Route path="/messages" render={() => <Messages state={props.state.dialogsPage}/>}/>
             <Route path="/music" render={() => <Music/>}/>
             <Route path="/video" render={() =>
