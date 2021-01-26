@@ -1,18 +1,24 @@
+const ADD_TEXT_ELEMENT = 'ADD_TEXT_ELEMENT';
+const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
+const ADD_TEXT_TEXTAREA_MESSAGE = 'ADD_TEXT_TEXTAREA_MESSAGE';
+const CHANGE_TEXTAREA_MESSAGE = 'CHANGE_TEXTAREA_MESSAGE';
+
+
 let store = {
     _state: {
         dialogsPage: {
             messagesArray: [
                 {
-                    id: 1,
+                    id: 4,
                     item_text: "Привет!"
                 }, {
-                    id: 2,
+                    id: 3,
                     item_text: "Как дела?"
                 }, {
-                    id: 3,
+                    id: 2,
                     item_text: "Уже приехали?!"
                 }, {
-                    id: 4,
+                    id: 1,
                     item_text: "Новое сообщение"
                 }
             ],
@@ -36,7 +42,9 @@ let store = {
                     item_name: "Igor",
                     item_id: "6"
                 }
-            ]
+            ],
+
+            newMessage: ""
         },
         profilePage: {
             postsArray: [
@@ -74,20 +82,6 @@ let store = {
     subscribe(observe) {
         this._callRender = observe;
     },
-    // addTextElement() {
-    //     let newElement = {
-    //         id: this._state.profilePage.postsArray.length + 1,
-    //         post_text: this._state.profilePage.newText,
-    //         posts_likes: 0
-    //     };
-    //     this._state.profilePage.postsArray.unshift(newElement);
-    //     this._state.profilePage.newText = '';
-    //     this._callRender(this._state);
-    // },
-    // changeTextarea(change) {
-    //     this._state.profilePage.newText = change;
-    //     this._callRender(this._state);
-    // }
 
     dispatch(action) {
         if (action.type === 'ADD_TEXT_ELEMENT') {
@@ -102,8 +96,35 @@ let store = {
         } else if (action.type === 'CHANGE_TEXTAREA') {
             this._state.profilePage.newText = action.change;
             this._callRender(this._state);
+        } else if (action.type === 'ADD_TEXT_TEXTAREA_MESSAGE') {
+            let newElement = {
+                id: this._state.dialogsPage.messagesArray.length + 1,
+                item_text: this._state.dialogsPage.newMessage
+            };
+            this._state.dialogsPage.messagesArray.unshift(newElement);
+            this._state.dialogsPage.newMessage = '';
+            this._callRender(this._state);
+        } else if (action.type === 'CHANGE_TEXTAREA_MESSAGE') {
+            this._state.dialogsPage.newMessage = action.change;
+            this._callRender(this._state);
         }
     }
 };
+
+export const addTextElement = () => {
+    return ({type: ADD_TEXT_ELEMENT});
+}
+
+export const changeTextarea = (text) => {
+    return ({type: CHANGE_TEXTAREA, change: text});
+}
+
+export const addMessageElement = () => {
+    return ({type: ADD_TEXT_TEXTAREA_MESSAGE});
+}
+
+export const changeMessageTextarea = (text) => {
+    return ({type: CHANGE_TEXTAREA_MESSAGE, change: text});
+}
 
 export default store;

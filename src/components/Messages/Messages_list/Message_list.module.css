@@ -1,7 +1,21 @@
 .messages_list {
     padding: 0;
-    padding-left: 25px;
-    width: 95%;
+    /*width: 95%;*/
     display: flex;
     flex-direction: column;
+    margin: 0;
+}
+
+.messageTextarea_wrapper {
+    margin-left: 25px;
+    width: 60%;
+}
+
+.messageTextarea {
+    margin-bottom: 15px;
+}
+
+.messageTextarea textarea {
+    box-sizing: border-box;
+    width: 100%;
 }

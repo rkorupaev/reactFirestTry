@@ -1,16 +1,17 @@
 import React from "react";
 import styles from "./Profile_textarea.module.css";
+import {addTextElement, changeTextarea} from "../../../../redux/state";
 
 const Profile_textarea = (props) => {
 
     let newPostTextArea = React.createRef();
 
     let onButtonClickHandler = () => {
-        props.dispatch({type: 'ADD_TEXT_ELEMENT'});
+        props.dispatch(addTextElement());
     };
 
     let textareaOnChangeHandler = () => {
-        props.dispatch({type: 'CHANGE_TEXTAREA', change: newPostTextArea.current.value});
+        props.dispatch(changeTextarea(newPostTextArea.current.value));
     };
 
     return (

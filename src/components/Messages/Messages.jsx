@@ -7,7 +7,7 @@ const Messages = (props) => {
     return (
         <div className={styles.messages_block}>
             <Dialogs dialogsArray={props.state.dialogsArray}/>
-            <Message_list messagesArray={props.state.messagesArray}/>
+            <Message_list state={props.state} dispatch={props.dispatch}/>
         </div>
     );
 }
