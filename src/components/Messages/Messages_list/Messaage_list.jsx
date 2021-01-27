@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Message_list.module.css";
 import Message_item from "./Message_item/Message_item";
-import {addMessageElement, changeMessageTextarea} from "../../../redux/state";
+import {addMessageElement, changeMessageTextarea} from "../../../redux/dialogPageReducer";
 
 const Message_list = (props) => {
 

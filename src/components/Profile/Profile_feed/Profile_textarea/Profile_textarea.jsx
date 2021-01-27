@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Profile_textarea.module.css";
-import {addTextElement, changeTextarea} from "../../../../redux/state";
+import {addTextElement, changeTextarea} from "../../../../redux/profilePageReducer";
 
 const Profile_textarea = (props) => {
 
