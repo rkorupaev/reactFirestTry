@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/state';
+import store from './redux/redux-state';
 import ReactDOM from 'react-dom';
 import App from './App';
 
@@ -15,7 +15,10 @@ let entireRerender = (state) => {
 };
 
 entireRerender(store.getState());
-store.subscribe(entireRerender);
+store.subscribe(() => {
+    let state = store.getState();
+    entireRerender(state);
+});
 
 
 // If you want to start measuring performance in your app, pass a function

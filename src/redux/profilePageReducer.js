@@ -1,7 +1,28 @@
 const ADD_TEXT_ELEMENT = 'ADD_TEXT_ELEMENT';
 const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
 
-const profilePageReducer = (state, action) => {
+let initialState = {
+    postsArray: [
+        {
+            id: 3,
+            post_text: "Not rly, just kidding)",
+            posts_likes: "15"
+        },
+        {
+            id: 2,
+            post_text: "I am so cool!",
+            posts_likes: "25"
+        },
+        {
+            id: 1,
+            post_text: "First post! Hello world!",
+            posts_likes: "135"
+        }
+    ],
+    newText: ""
+};
+
+const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TEXT_ELEMENT:
             let newElement = {

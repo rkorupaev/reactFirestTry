@@ -83,6 +83,8 @@ let store = {
     dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogPageReducer(this._state.dialogsPage, action);
+
+        this._callRender(this._state);
     }
 };
 
