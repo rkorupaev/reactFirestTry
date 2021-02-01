@@ -1,26 +1,23 @@
 import React from "react";
-import styles from "./Profile_textarea.module.css";
-import {addTextElement, changeTextarea} from "../../../../redux/profilePageReducer";
 
-const Profile_textarea = (props) => {
+const ProfileTextarea = (props) => {
 
     let newPostTextArea = React.createRef();
 
     let onButtonClickHandler = () => {
-        props.dispatch(addTextElement());
+        props.onButtonClickHandler();
     };
 
     let textareaOnChangeHandler = () => {
-        props.dispatch(changeTextarea(newPostTextArea.current.value));
+        props.textareaOnChangeHandler(newPostTextArea.current.value);
     };
 
     return (
-        <div className={styles.profile__textarea}>
+        <div>
             <textarea placeholder="Что нового?" ref={newPostTextArea} onChange={textareaOnChangeHandler}
-                      value={props.newText}/>
+                      value={props.state.newText}/>
             <button onClick={onButtonClickHandler}>Send</button>
         </div>
     );
 }
-
-export default Profile_textarea;
+export default ProfileTextarea;

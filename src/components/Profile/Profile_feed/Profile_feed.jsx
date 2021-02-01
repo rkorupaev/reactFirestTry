@@ -1,14 +1,15 @@
 import React from "react";
 import styles from "./Profile_feed.module.css";
-import Profile_textarea from "./Profile_textarea/Profile_textarea";
 import Profile_posts from "./Profile_posts/Profile_posts";
+import ProfileTextareaContainer from "./Profile_textarea/Profile_textarea_container";
 
 const Profile_feed = (props) => {
+    let state = props.store.getState();
     return (
         <div className={styles.profile_feed}>
             <h2>Лента новостей</h2>
-            <Profile_textarea dispatch={props.dispatch} newText={props.state.profilePage.newText}/>
-            <Profile_posts postsArray={props.state.profilePage.postsArray}/>
+            <ProfileTextareaContainer store={props.store}/>
+            <Profile_posts state={state}/>
         </div>
     );
 }

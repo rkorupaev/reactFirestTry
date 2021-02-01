@@ -35,6 +35,7 @@ const profilePageReducer = (state = initialState, action) => {
             return state;
         case CHANGE_TEXTAREA:
             state.newText = action.change;
+            console.log(state);
             return state;
         default:
             return state;

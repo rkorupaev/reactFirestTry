@@ -10,11 +10,11 @@ const Message_list = (props) => {
     let newMessageElement = React.createRef();
 
     const onButtonCLickHandler = () => {
-        props.dispatch(addMessageElement());
+        props.onButtonCLickHandler();
     };
 
     const onMessageTextareaChange = () => {
-        props.dispatch(changeMessageTextarea(newMessageElement.current.value));
+        props.onMessageTextareaChange(newMessageElement.current.value);
     };
 
     return (
