@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "./Message_list.module.css";
 import Message_item from "./Message_item/Message_item";
-import {addMessageElement, changeMessageTextarea} from "../../../redux/dialogPageReducer";
 
 const Message_list = (props) => {
 
-    let messageItemArray = props.state.messagesArray.map(message => <Message_item item_text={message.item_text}/>);
+    let messageItemArray = props.messagesArray.map(message => <Message_item item_text={message.item_text}/>);
 
     let newMessageElement = React.createRef();
 
@@ -21,7 +20,7 @@ const Message_list = (props) => {
         <div className={styles.messageTextarea_wrapper}>
             <div className={styles.messageTextarea}>
                 <textarea ref={newMessageElement} onChange={onMessageTextareaChange}
-                          value={props.state.newMessage} placeholder="Пиши здесь"/>
+                          value={props.newMessage} placeholder="Пиши здесь"/>
                 <button onClick={onButtonCLickHandler}>Send</button>
             </div>
             <ul className={styles.messages_list}>

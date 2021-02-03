@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
             <div className={styles.profile}>
                 <Profile_card/>
-                <Profile_feed store={props.store}/>
+                <Profile_feed/>
             </div>
     );
 }

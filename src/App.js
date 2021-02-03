@@ -14,8 +14,8 @@ const App = (props) => {
                 <div className="app__wrapper">
                     <Header/>
                     <main className={`${generalStyles.container} ${styles.main__container}`}>
-                        <Sidebar state={props.state.sidebar}/>
-                        <Content store={props.store}/>
+                        <Sidebar/>
+                        <Content/>
                     </main>
                 </div>
             </div>

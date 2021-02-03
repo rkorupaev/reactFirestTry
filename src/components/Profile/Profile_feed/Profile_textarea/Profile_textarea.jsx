@@ -15,7 +15,7 @@ const ProfileTextarea = (props) => {
     return (
         <div>
             <textarea placeholder="Что нового?" ref={newPostTextArea} onChange={textareaOnChangeHandler}
-                      value={props.state.newText}/>
+                      value={props.newText}/>
             <button onClick={onButtonClickHandler}>Send</button>
         </div>
     );

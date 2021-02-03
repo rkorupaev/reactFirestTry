@@ -11,8 +11,8 @@ const Content = (props) => {
 
     return (
         <section className={styles.content}>
-            <Route path="/profile" render={() => <Profile store={props.store}/>}/>
-            <Route path="/messages" render={() => <Messages store={props.store}/>}/>
+            <Route path="/profile" render={() => <Profile/>}/>
+            <Route path="/messages" render={() => <Messages/>}/>
             <Route path="/music" render={() => <Music/>}/>
             <Route path="/video" render={() =>
                 <Video/>

@@ -1,20 +1,26 @@
 import React from "react";
-import {addMessageElement, changeMessageTextarea} from "../../../redux/dialogPageReducer";
 import Message_list from "./Messaage_list";
+import {connect} from "react-redux";
+import {addMessageElement, changeMessageTextarea} from "../../../redux/dialogPageReducer";
 
-const Message_list_container = (props) => {
+const mapStateToProps = (state) => {
+    return {
+        messagesArray: state.dialogsPage.messagesArray,
+        newMessage: state.dialogsPage.newMessage
+    }
+};
 
-    let state = props.store.getState().dialogsPage;
-
-    const onButtonCLickHandler = () => {
-        props.store.dispatch(addMessageElement());
-    };
-
-    const onMessageTextareaChange = (text) => {
-        props.store.dispatch(changeMessageTextarea(text));
-    };
-
-    return <Message_list onMessageTextareaChange={onMessageTextareaChange} onButtonCLickHandler={onButtonCLickHandler} state={state}/>;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onMessageTextareaChange: (text) => {
+            dispatch(changeMessageTextarea(text));
+        },
+        onButtonCLickHandler: () => {
+            dispatch(addMessageElement());
+        }
+    }
 }
+
+const Message_list_container = connect(mapStateToProps, mapDispatchToProps)(Message_list);
 
 export default Message_list_container;

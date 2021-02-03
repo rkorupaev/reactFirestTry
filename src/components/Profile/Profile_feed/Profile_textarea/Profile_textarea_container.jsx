@@ -1,22 +1,25 @@
 import React from "react";
 import {addTextElement, changeTextarea} from "../../../../redux/profilePageReducer";
 import ProfileTextarea from "./Profile_textarea";
+import {connect} from "react-redux";
 
-const ProfileTextareaContainer = (props) => {
-    let state = props.store.getState();
-
-    let onButtonClickHandler = () => {
-        props.store.dispatch(addTextElement());
+const mapStateToProps = (state) => {
+    return {
+        newText: state.profilePage.newText
     };
-
-    let textareaOnChangeHandler = (text) => {
-        props.store.dispatch(changeTextarea(text));
-    };
-
-    return (
-        <ProfileTextarea onButtonClickHandler={onButtonClickHandler}
-                         textareaOnChangeHandler={textareaOnChangeHandler} state={state.profilePage}/>
-    );
 };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onButtonClickHandler: () => {
+            dispatch(addTextElement())
+        },
+        textareaOnChangeHandler: (text) => {
+            dispatch(changeTextarea(text))
+        }
+    };
+};
+
+const ProfileTextareaContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileTextarea);
 
 export default ProfileTextareaContainer;
