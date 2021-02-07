@@ -43,17 +43,22 @@ let initialState = {
 
 const dialogPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_TEXT_TEXTAREA_MESSAGE:
+        case ADD_TEXT_TEXTAREA_MESSAGE: {
+            let stateCopy = {...state};
             let newElement = {
                 id: state.messagesArray.length + 1,
                 item_text: state.newMessage
             };
-            state.messagesArray.unshift(newElement);
-            state.newMessage = '';
-            return state;
-        case CHANGE_TEXTAREA_MESSAGE:
-            state.newMessage = action.change;
-            return state;
+            stateCopy.messagesArray = [...state.messagesArray];
+            stateCopy.messagesArray.unshift(newElement);
+            stateCopy.newMessage = '';
+            return stateCopy;
+        }
+        case CHANGE_TEXTAREA_MESSAGE: {
+            let stateCopy = {...state};
+            stateCopy.newMessage = action.change;
+            return stateCopy;
+        }
         default:
             return state;
     }

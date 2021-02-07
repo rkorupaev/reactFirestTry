@@ -24,19 +24,23 @@ let initialState = {
 
 const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_TEXT_ELEMENT:
+        case ADD_TEXT_ELEMENT: {
+            let stateCopy = {...state};
             let newElement = {
                 id: state.postsArray.length + 1,
                 post_text: state.newText,
                 posts_likes: 0
             };
-            state.postsArray.unshift(newElement);
-            state.newText = '';
-            return state;
-        case CHANGE_TEXTAREA:
-            state.newText = action.change;
-            console.log(state);
-            return state;
+            stateCopy.postsArray = [...state.postsArray];
+            stateCopy.postsArray.unshift(newElement);
+            stateCopy.newText = '';
+            return stateCopy;
+        }
+        case CHANGE_TEXTAREA: {
+            let stateCopy = {...state};
+            stateCopy.newText = action.change;
+            return stateCopy;
+        }
         default:
             return state;
     }
