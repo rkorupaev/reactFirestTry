@@ -2,13 +2,12 @@ let initialState = {
     sidebarFriends: [
         {name: "Дима Иванов"},
         {name: "Оля Васина"},
-        {name: "Kate Pressly"}
+        {name: "Kate Presley"}
     ]
 };
 
 const sidebarReducer = (state = initialState, action) => {
-    let stateCopy = {...state};
-    return stateCopy;
+    return {...state};
 };
 
 export default sidebarReducer;
