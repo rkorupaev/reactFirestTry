@@ -6,7 +6,7 @@ import Music from "../Music/Music";
 import Video from "../Video/Video";
 import Settings from "../Settings/Settings";
 import Profile from "../Profile/Profile";
-import FriendsList from "../Friends/Friends";
+import FriendsListContainer from "../Friends/Friends_container";
 
 const Content = (props) => {
 
@@ -15,7 +15,7 @@ const Content = (props) => {
             <Route path="/profile" render={() => <Profile/>}/>
             <Route path="/messages" render={() => <Messages/>}/>
             <Route path="/friends" render={() =>
-                <FriendsList/>
+                <FriendsListContainer/>
             }/>
             <Route path="/music" render={() => <Music/>}/>
             <Route path="/video" render={() =>

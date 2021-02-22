@@ -1,27 +1,18 @@
 import React from "react";
 import style from "./Friends.module.css";
+import FriendsItem from "./Friends_item/Friends_item";
 
-const FriendsList = () => {
+const FriendsList = (props) => {
+
+    let friendsItemsArray = props.friendsArray.friendsArray.map(item => <FriendsItem key={item.id}
+                                                                        item_bio={item.item_bio}
+                                                                        item_location={item.item_location}
+                                                                        item_avatar={item.item_avatar}
+                                                                        item_text={item.item_text}/>);
+
     return (
         <ul className={style.friendlist}>
-            <li className={style.friendlist__item}>
-                <div className={style.item__infoblock}>
-                    <div className={style.item__avablock}>
-                        <img className={style.item__image}
-                             src="https://www.thispersondoesnotexist.com/image?11613988492"
-                             alt="Дима Борисов" width="50" height="50"/>
-                        <button className={style.item__button}>Follow</button>
-                    </div>
-                    <div className={style.item__bio}>
-                        <h2>Дима Баранов</h2>
-                        <p><span>32</span>года</p>
-                        <p>Москва</p>
-                    </div>
-                </div>
-                <div className={style.item__status}>
-                    <p>Изучаю REACT.</p>
-                </div>
-            </li>
+            {friendsItemsArray}
         </ul>
     );
 };
