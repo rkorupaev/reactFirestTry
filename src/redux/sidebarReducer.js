@@ -1,8 +1,17 @@
 let initialState = {
     sidebarFriends: [
-        {name: "Дима Иванов"},
-        {name: "Оля Васина"},
-        {name: "Kate Presley"}
+        {
+            id: 1,
+            name: "Дима Иванов"
+        },
+        {
+            id: 2,
+            name: "Оля Васина"
+        },
+        {
+            id: 3,
+            name: "Kate Presley"
+        }
     ]
 };
 

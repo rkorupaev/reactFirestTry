@@ -1,5 +1,5 @@
-const ADD_TEXT_TEXTAREA_MESSAGE = 'ADD_TEXT_TEXTAREA_MESSAGE';
-const CHANGE_TEXTAREA_MESSAGE = 'CHANGE_TEXTAREA_MESSAGE';
+const SET_FRIENDS = 'SET_FRIENDS';
+const CHANGE_STATUS = 'CHANGE_STATUS';
 
 let initialState = {
     friendsArray: [
@@ -56,34 +56,32 @@ let initialState = {
 
 const friendPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case ADD_TEXT_TEXTAREA_MESSAGE: {
-        //     let newElement = {
-        //         id: state.messagesArray.length + 1,
-        //         item_text: state.newMessage
-        //     };
-        //     return {
-        //         ...state,
-        //         messagesArray: [newElement, ...state.messagesArray],
-        //         newMessage: ''
-        //     };
-        // }
-        // case CHANGE_TEXTAREA_MESSAGE: {
-        //     return {
-        //         ...state,
-        //         newMessage: action.change
-        //     };
-        // }
+        case SET_FRIENDS: {
+            return {
+                ...state, friendsArray: [...state.friendsArray, ...action.friendsList]
+            };
+        }
+        case CHANGE_STATUS: {
+            return {
+                ...state, friendsArray: state.friendsArray.map(user => {
+                    if (user.id === action.id) {
+                        user.isFollowed === false ? user.isFollowed = true : user.isFollowed = false;
+                    }
+                    return user;
+                })
+            };
+        }
         default:
             return state;
     }
 };
-//
-// export const addMessageElement = () => {
-//     return ({type: ADD_TEXT_TEXTAREA_MESSAGE});
-// }
-//
-// export const changeMessageTextarea = (text) => {
-//     return ({type: CHANGE_TEXTAREA_MESSAGE, change: text});
-// }
+
+export const setFriendsAC = (friendsList) => {
+    return ({type: SET_FRIENDS, friendsList});
+}
+
+export const changeStatusAC = (id) => {
+    return ({type: CHANGE_STATUS, id});
+}
 
 export default friendPageReducer;
