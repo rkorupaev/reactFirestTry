@@ -5,14 +5,14 @@ import {changeStatusAC, setFriendsAC} from "../../redux/friendsPageReducer";
 
 let mapStateToProps = (state) => {
     return {
-        friendsArray: state.friendsPage
+        friendsArray: state.friendsPage.friendsArray
     }
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        setFriends: (friendsList) => {
-            dispatch(setFriendsAC(friendsList));
+        setFriends: (friendsArray) => {
+            dispatch(setFriendsAC(friendsArray));
         },
         onFollowButtonCLick: (friendID) => {
             dispatch(changeStatusAC(friendID));
