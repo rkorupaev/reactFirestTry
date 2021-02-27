@@ -4,9 +4,7 @@ import * as axios from "axios";
 
 class FriendsList extends React.Component {
 
-    constructor(props) {
-        super(props);
-
+    componentDidMount() {
         axios.get("http://localhost:4000/friends").then(response => {
             this.props.setFriends(response.data)
         });
