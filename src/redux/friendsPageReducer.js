@@ -1,11 +1,12 @@
 const SET_FRIENDS = 'SET_FRIENDS';
 const CHANGE_STATUS = 'CHANGE_STATUS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 
 let initialState = {
     friendsArray: [],
     pageSize: 5,
-    totalCount: 21,
+    totalUsersCount: 0,
     currentPage: 1
 };
 
@@ -31,6 +32,11 @@ const friendPageReducer = (state = initialState, action) => {
                 ...state, currentPage: action.currentPage
             };
         }
+        case SET_TOTAL_PAGES: {
+            return {
+                ...state, totalUsersCount: action.totalUsersCount
+            };
+        }
         default:
             return state;
     }
@@ -46,6 +52,10 @@ export const changeStatusAC = (id) => {
 
 export const setCurrentPageAC = (currentPage) => {
     return ({type: SET_CURRENT_PAGE, currentPage});
+}
+
+export const setTotalPagesAC = (totalUsersCount) => {
+    return ({type: SET_TOTAL_PAGES, totalUsersCount});
 }
 
 export default friendPageReducer;
