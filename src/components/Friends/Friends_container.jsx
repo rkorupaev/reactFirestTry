@@ -1,23 +1,36 @@
 import React from "react";
 import {connect} from "react-redux";
 import FriendsList from "./Friends";
-import {changeStatusAC, setCurrentPageAC, setFriendsAC, setTotalPagesAC} from "../../redux/friendsPageReducer";
+import {
+    changeFetchingStatusAC,
+    changeStatusAC,
+    setCurrentPageAC,
+    setFriendsAC,
+    setTotalPagesAC
+} from "../../redux/friendsPageReducer";
 import * as axios from "axios";
 
 
 class FriendsListApi extends React.Component {
     componentDidMount() {
+        this.props.changeFetchStatus(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
             this.props.setFriends(response.data.items)
             this.props.setTotalPages(response.data.totalCount)
+            this.props.changeFetchStatus(false);
         });
     };
 
     onPageButtonClickHandler = (pageNumber) => {
-        this.props.onPageButtonClick(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
-            this.props.setFriends(response.data.items)
-        });
+        if (pageNumber !== this.props.currentPage) {
+            this.props.onPageButtonClick(pageNumber);
+            this.props.changeFetchStatus(true);
+
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
+                this.props.setFriends(response.data.items)
+                this.props.changeFetchStatus(false);
+            });
+        }
     };
 
     render() {
@@ -25,7 +38,8 @@ class FriendsListApi extends React.Component {
                             onPageButtonClickHandler={this.onPageButtonClickHandler}
                             currentPage={this.props.currentPage}
                             friendsArray={this.props.friendsArray}
-                            onFollowButtonCLick={this.props.onFollowButtonCLick}/>;
+                            onFollowButtonCLick={this.props.onFollowButtonCLick}
+                            isFetching={this.props.isFetching}/>;
     }
 }
 
@@ -34,7 +48,8 @@ let mapStateToProps = (state) => {
         friendsArray: state.friendsPage.friendsArray,
         totalUsersCount: state.friendsPage.totalUsersCount,
         pageSize: state.friendsPage.pageSize,
-        currentPage: state.friendsPage.currentPage
+        currentPage: state.friendsPage.currentPage,
+        isFetching: state.friendsPage.isFetching
     }
 };
 
@@ -51,6 +66,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setTotalPages: (totalUsers) => {
             dispatch(setTotalPagesAC(totalUsers));
+        },
+        changeFetchStatus: (isFetching) => {
+            dispatch(changeFetchingStatusAC(isFetching));
         }
     }
 };

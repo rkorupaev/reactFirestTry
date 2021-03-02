@@ -2,12 +2,14 @@ const SET_FRIENDS = 'SET_FRIENDS';
 const CHANGE_STATUS = 'CHANGE_STATUS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
+const CHANGE_FETCH_STATUS = 'CHANGE_FETCH_STATUS';
 
 let initialState = {
     friendsArray: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 };
 
 const friendPageReducer = (state = initialState, action) => {
@@ -37,6 +39,11 @@ const friendPageReducer = (state = initialState, action) => {
                 ...state, totalUsersCount: action.totalUsersCount
             };
         }
+        case CHANGE_FETCH_STATUS: {
+            return {
+                ...state, isFetching: action.isFetching
+            };
+        }
         default:
             return state;
     }
@@ -56,6 +63,10 @@ export const setCurrentPageAC = (currentPage) => {
 
 export const setTotalPagesAC = (totalUsersCount) => {
     return ({type: SET_TOTAL_PAGES, totalUsersCount});
+}
+
+export const changeFetchingStatusAC = (isFetching) => {
+    return ({type: CHANGE_FETCH_STATUS, isFetching});
 }
 
 export default friendPageReducer;

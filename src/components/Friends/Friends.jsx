@@ -1,22 +1,9 @@
 import React from "react";
 import style from "./Friends.module.css";
 import userDefaultIcon from "./../../img/user.png";
+import preloaderHorizontal from "./../../img/preloader.gif"
 
 let FriendsList = (props) => {
-
-    // componentDidMount() {
-    //     axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
-    //         this.props.setFriends(response.data.items)
-    //         this.props.setTotalPages(response.data.totalCount)
-    //     });
-    // };
-    //
-    // onPageButtonClickHandler = (pageNumber) => {
-    //     this.props.onPageButtonClick(pageNumber);
-    //     axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
-    //         this.props.setFriends(response.data.items)
-    //     });
-    // };
 
     let totalPageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -38,6 +25,7 @@ let FriendsList = (props) => {
                 }}
                                                          className={[style.pagination__item, props.currentPage === page && style.activepage].join(' ')}>{page}</li>)}
             </ul>
+            <div className={props.isFetching ? style.friendlist__preloader : [style.hidden, style.friendlist__preloader].join(` `)}><img src={preloaderHorizontal}/></div>
             <ul className={style.friendlist}>
                 {
                     props.friendsArray.map(friend =>
