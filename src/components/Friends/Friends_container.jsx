@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import FriendsList from "./Friends";
 import {
     changeFetchingStatusAC,
-    changeStatusAC,
+    changeStatusAC, nextPageAC, prevPageAC,
     setCurrentPageAC,
     setFriendsAC,
     setTotalPagesAC
@@ -33,13 +33,37 @@ class FriendsListApi extends React.Component {
         }
     };
 
+    onNextPageCLickHandler = (pageNumber) => {
+        this.props.onNextPageCLick(pageNumber);
+        this.props.changeFetchStatus(true);
+
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
+            this.props.setFriends(response.data.items)
+            this.props.changeFetchStatus(false);
+        });
+    };
+
+    onPrevPageCLickHandler = (pageNumber) => {
+        if (pageNumber >= 1) {
+            this.props.onPrevPageCLick(pageNumber);
+            this.props.changeFetchStatus(true);
+
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
+                this.props.setFriends(response.data.items)
+                this.props.changeFetchStatus(false);
+            });
+        }
+    };
+
     render() {
         return <FriendsList totalUsersCount={this.props.totalUsersCount} pageSize={this.props.pageSize}
                             onPageButtonClickHandler={this.onPageButtonClickHandler}
                             currentPage={this.props.currentPage}
                             friendsArray={this.props.friendsArray}
                             onFollowButtonCLick={this.props.onFollowButtonCLick}
-                            isFetching={this.props.isFetching}/>;
+                            isFetching={this.props.isFetching}
+                            onNextPageCLickHandler={this.onNextPageCLickHandler}
+                            onPrevPageCLickHandler={this.onPrevPageCLickHandler}/>;
     }
 }
 
@@ -69,7 +93,13 @@ let mapDispatchToProps = (dispatch) => {
         },
         changeFetchStatus: (isFetching) => {
             dispatch(changeFetchingStatusAC(isFetching));
-        }
+        },
+        onNextPageCLick: (pageNumber) => {
+            dispatch(nextPageAC(pageNumber));
+        },
+        onPrevPageCLick: (pageNumber) => {
+            dispatch(prevPageAC(pageNumber));
+        },
     }
 };
 

@@ -3,6 +3,8 @@ const CHANGE_STATUS = 'CHANGE_STATUS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 const CHANGE_FETCH_STATUS = 'CHANGE_FETCH_STATUS';
+const NEXT_PAGE = 'NEXT_PAGE';
+const PREV_PAGE = 'PREV_PAGE';
 
 let initialState = {
     friendsArray: [],
@@ -15,7 +17,7 @@ let initialState = {
 const friendPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_FRIENDS: {
-            return {
+              return {
                 ...state, friendsArray: [...action.friendsArray]
             };
         }
@@ -44,6 +46,16 @@ const friendPageReducer = (state = initialState, action) => {
                 ...state, isFetching: action.isFetching
             };
         }
+        case NEXT_PAGE: {
+            return {
+                ...state, currentPage: action.currentPage + 1
+            };
+        }
+        case PREV_PAGE: {
+            return {
+                ...state, currentPage: action.currentPage - 1
+            };
+        }
         default:
             return state;
     }
@@ -67,6 +79,14 @@ export const setTotalPagesAC = (totalUsersCount) => {
 
 export const changeFetchingStatusAC = (isFetching) => {
     return ({type: CHANGE_FETCH_STATUS, isFetching});
+}
+
+export const nextPageAC = (currentPage) => {
+    return ({type: NEXT_PAGE, currentPage});
+}
+
+export const prevPageAC = (currentPage) => {
+    return ({type: PREV_PAGE, currentPage});
 }
 
 export default friendPageReducer;

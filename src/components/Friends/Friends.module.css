@@ -10,15 +10,21 @@
     display: flex;
 }
 
+.friendlist__topblock {
+    display: flex;
+    justify-content: center;
+}
+
 .friendlist__pagination {
     display: flex;
     justify-content: center;
     padding: 0;
 }
 
-.pagination__item {
-    width: 20px;
-    height: 20px;
+.pagination__item,
+.friendlist__pagebuttons {
+    width: 28px;
+    height: 28px;
     line-height: 20px;
     margin: 0;
     border-radius: 10px;
@@ -32,9 +38,21 @@
 
     margin-right: 5px;
     transition-duration: 0.3s;
+    box-sizing: border-box;
+    outline: none;
 }
 
-.pagination__item:hover {
+.friendlist__pagebuttons {
+    margin: 16px;
+}
+
+.friendlist__pagebuttons:hover,
+.friendlist__pagebuttons:focus{
+    transform: scale(1.1);
+}
+
+.pagination__item:hover,
+.pagination__item:focus {
     transform: scale(1.1);
 }
 
