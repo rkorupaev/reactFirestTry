@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Content.module.css";
-import {Route} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import Messages from "../Messages/Messages";
 import Music from "../Music/Music";
 import Video from "../Video/Video";
@@ -24,6 +24,7 @@ const Content = (props) => {
             <Route path="/settings" render={() =>
                 <Settings/>
             }/>
+            <Redirect from='/' to='/profile'/>
         </section>
     );
 }

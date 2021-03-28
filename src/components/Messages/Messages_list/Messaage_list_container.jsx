@@ -10,17 +10,9 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onMessageTextareaChange: (text) => {
-            dispatch(changeMessageTextarea(text));
-        },
-        onButtonCLickHandler: () => {
-            dispatch(addMessageElement());
-        }
-    }
-}
-
-const Message_list_container = connect(mapStateToProps, mapDispatchToProps)(Message_list);
+const Message_list_container = connect(mapStateToProps, {
+    onMessageTextareaChange: changeMessageTextarea,
+    onButtonCLickHandler: addMessageElement
+})(Message_list);
 
 export default Message_list_container;

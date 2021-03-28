@@ -61,31 +61,31 @@ const friendPageReducer = (state = initialState, action) => {
     }
 };
 
-export const setFriendsAC = (friendsArray) => {
+export const setFriends = (friendsArray) => {
     return ({type: SET_FRIENDS, friendsArray});
 }
 
-export const changeStatusAC = (id) => {
+export const changeStatus = (id) => {
     return ({type: CHANGE_STATUS, id});
 }
 
-export const setCurrentPageAC = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return ({type: SET_CURRENT_PAGE, currentPage});
 }
 
-export const setTotalPagesAC = (totalUsersCount) => {
+export const setTotalPages = (totalUsersCount) => {
     return ({type: SET_TOTAL_PAGES, totalUsersCount});
 }
 
-export const changeFetchingStatusAC = (isFetching) => {
+export const changeFetchingStatus = (isFetching) => {
     return ({type: CHANGE_FETCH_STATUS, isFetching});
 }
 
-export const nextPageAC = (currentPage) => {
+export const nextPage = (currentPage) => {
     return ({type: NEXT_PAGE, currentPage});
 }
 
-export const prevPageAC = (currentPage) => {
+export const prevPage = (currentPage) => {
     return ({type: PREV_PAGE, currentPage});
 }
 

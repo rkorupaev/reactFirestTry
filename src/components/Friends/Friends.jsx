@@ -6,6 +6,8 @@ import preloaderHorizontal from "./../../img/preloader.gif"
 let FriendsList = (props) => {
         let totalPageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
+        console.log(props.friendsArray.name)
+
         let pageButtonsArray = [];
         for (let i = 0; i < totalPageCount; i++) {
             pageButtonsArray.push(i);

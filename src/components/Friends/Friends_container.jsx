@@ -2,11 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 import FriendsList from "./Friends";
 import {
-    changeFetchingStatusAC,
-    changeStatusAC, nextPageAC, prevPageAC,
-    setCurrentPageAC,
-    setFriendsAC,
-    setTotalPagesAC
+    changeFetchingStatus,
+    changeStatus, nextPage, prevPage,
+    setCurrentPage,
+    setFriends,
+    setTotalPages
 } from "../../redux/friendsPageReducer";
 import * as axios from "axios";
 
@@ -77,32 +77,14 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        setFriends: (friendsArray) => {
-            dispatch(setFriendsAC(friendsArray));
-        },
-        onFollowButtonCLick: (friendID) => {
-            dispatch(changeStatusAC(friendID));
-        },
-        onPageButtonClick: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        setTotalPages: (totalUsers) => {
-            dispatch(setTotalPagesAC(totalUsers));
-        },
-        changeFetchStatus: (isFetching) => {
-            dispatch(changeFetchingStatusAC(isFetching));
-        },
-        onNextPageCLick: (pageNumber) => {
-            dispatch(nextPageAC(pageNumber));
-        },
-        onPrevPageCLick: (pageNumber) => {
-            dispatch(prevPageAC(pageNumber));
-        },
-    }
-};
-
-const FriendsListContainer = connect(mapStateToProps, mapDispatchToProps)(FriendsListApi);
+const FriendsListContainer = connect(mapStateToProps, {
+    setFriends,
+    onFollowButtonCLick: changeStatus,
+    onPageButtonClick: setCurrentPage,
+    setTotalPages,
+    changeFetchStatus: changeFetchingStatus,
+    onNextPageCLick: nextPage,
+    onPrevPageCLick: prevPage
+})(FriendsListApi);
 
 export default FriendsListContainer;
