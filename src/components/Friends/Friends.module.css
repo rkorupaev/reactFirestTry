@@ -3,10 +3,25 @@
     margin: 0;
 }
 
-.friendlist__item {
-    border: 2px solid #bd9354;
+.friendlist__link {
+    display: block;
+    margin-bottom: 10px;
+    outline: none;
     border-radius: 10px;
+    border: 2px solid #bd9354;
     padding: 10px;
+}
+
+.friendlist__link:hover,
+.friendlist__link:focus {
+    border: 2px solid black;
+}
+
+.friendlist__link:last-child {
+    margin-bottom: 0;
+}
+
+.friendlist__item {
     display: flex;
 }
 

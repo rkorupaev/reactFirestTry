@@ -7,12 +7,13 @@ import Video from "../Video/Video";
 import Settings from "../Settings/Settings";
 import Profile from "../Profile/Profile";
 import FriendsListContainer from "../Friends/Friends_container";
+import ProfileContainer from "../Profile/ProfileContainer";
 
 const Content = (props) => {
 
     return (
         <section className={styles.content}>
-            <Route path="/profile" render={() => <Profile/>}/>
+            <Route path="/profile" render={() => <ProfileContainer/>}/>
             <Route path="/messages" render={() => <Messages/>}/>
             <Route path="/friends" render={() =>
                 <FriendsListContainer/>

@@ -2,11 +2,10 @@ import React from "react";
 import style from "./Friends.module.css";
 import userDefaultIcon from "./../../img/user.png";
 import preloaderHorizontal from "./../../img/preloader.gif"
+import {NavLink} from "react-router-dom";
 
 let FriendsList = (props) => {
         let totalPageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-        console.log(props.friendsArray.name)
 
         let pageButtonsArray = [];
         for (let i = 0; i < totalPageCount; i++) {
@@ -49,7 +48,7 @@ let FriendsList = (props) => {
                     <img src={preloaderHorizontal}/></div>
                 <ul className={style.friendlist}>
                     {
-                        props.friendsArray.map(friend =>
+                        props.friendsArray.map(friend =><NavLink to={'/profile/' + friend.id} className={style.friendlist__link}>
                             <li className={style.friendlist__item}>
                                 <div className={style.item__infoblock}>
                                     <div className={style.item__avablock}>
@@ -72,7 +71,7 @@ let FriendsList = (props) => {
                                 <div className={style.item__status}>
                                     <p>friend.item_text</p>
                                 </div>
-                            </li>
+                            </li></NavLink>
                         )}
                 </ul>
             </div>)

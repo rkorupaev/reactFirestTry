@@ -1,5 +1,6 @@
 const ADD_TEXT_ELEMENT = 'ADD_TEXT_ELEMENT';
 const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
+const SET_ACTIVE_USER_PROFILE = 'SET_ACTIVE_USER_PROFILE';
 
 let initialState = {
     postsArray: [
@@ -19,7 +20,8 @@ let initialState = {
             posts_likes: "135"
         }
     ],
-    newText: ""
+    newText: "",
+    userProfile: null
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -42,6 +44,12 @@ const profilePageReducer = (state = initialState, action) => {
                 newText: action.change
             };
         }
+        case SET_ACTIVE_USER_PROFILE: {
+            return {
+                ...state,
+                userProfile: action.userProfile
+            };
+        }
         default:
             return state;
     }
@@ -53,6 +61,10 @@ export const addTextElement = () => {
 
 export const changeTextarea = (text) => {
     return ({type: CHANGE_TEXTAREA, change: text});
+}
+
+export const setActiveUserProfile = (userProfile) => {
+    return ({type: SET_ACTIVE_USER_PROFILE, userProfile: userProfile});
 }
 
 export default profilePageReducer;
