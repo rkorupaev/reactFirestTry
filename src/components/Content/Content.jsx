@@ -13,7 +13,7 @@ const Content = (props) => {
 
     return (
         <section className={styles.content}>
-            <Route path="/profile" render={() => <ProfileContainer/>}/>
+            <Route path="/profile/:userId" render={() => <ProfileContainer/>}/>
             <Route path="/messages" render={() => <Messages/>}/>
             <Route path="/friends" render={() =>
                 <FriendsListContainer/>
@@ -25,7 +25,7 @@ const Content = (props) => {
             <Route path="/settings" render={() =>
                 <Settings/>
             }/>
-            <Redirect from='/' to='/profile'/>
+            <Redirect from='/' to='/profile/2'/>
         </section>
     );
 }
