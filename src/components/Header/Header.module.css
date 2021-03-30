@@ -3,9 +3,5 @@
     margin-bottom: 15px;
     border-radius: 5px;
     padding: 20px;
-}
-
-.header__logo {
-    display: inline-block;
-    height: 100%;
+    display: flex;
 }

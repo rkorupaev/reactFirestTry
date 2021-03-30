@@ -1,0 +1,13 @@
+.loginBlock {
+    text-decoration: none;
+    margin-right: 25px;
+    font-size: 24px;
+    outline: none;
+    transition-duration: 0.3s;
+    height: 40px;
+}
+
+.loginBlock:hover,
+.loginBlock:focus {
+    transform: scale(1.1);
+}

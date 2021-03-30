@@ -5,11 +5,10 @@ import Messages from "../Messages/Messages";
 import Music from "../Music/Music";
 import Video from "../Video/Video";
 import Settings from "../Settings/Settings";
-import Profile from "../Profile/Profile";
 import FriendsListContainer from "../Friends/Friends_container";
 import ProfileContainer from "../Profile/ProfileContainer";
 
-const Content = (props) => {
+const Content = () => {
 
     return (
         <section className={styles.content}>
