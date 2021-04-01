@@ -24,7 +24,7 @@ const Content = () => {
             <Route path="/settings" render={() =>
                 <Settings/>
             }/>
-            <Redirect from='/' to='/profile/2'/>
+            {/*<Redirect from='/' to='/profile/2'/>*/}
         </section>
     );
 }

@@ -3,6 +3,7 @@ import style from "./Friends.module.css";
 import userDefaultIcon from "./../../img/user.png";
 import preloaderHorizontal from "./../../img/preloader.gif"
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 let FriendsList = (props) => {
         let totalPageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -48,18 +49,40 @@ let FriendsList = (props) => {
                     <img src={preloaderHorizontal}/></div>
                 <ul className={style.friendlist}>
                     {
-                        props.friendsArray.map(friend =><NavLink to={'/profile/' + friend.id} className={style.friendlist__link}>
+                        props.friendsArray.map(friend =>
                             <li className={style.friendlist__item}>
                                 <div className={style.item__infoblock}>
                                     <div className={style.item__avablock}>
-                                        <img className={style.item__image}
-                                             src={friend.photos.large != null ? friend.photos.large : userDefaultIcon}
-                                             alt={friend.name}/>
+                                        <NavLink to={'/profile/' + friend.id}
+                                                 className={style.friendlist__link}><img className={style.item__image}
+                                                                                         src={friend.photos.large != null ? friend.photos.large : userDefaultIcon}
+                                                                                         alt={friend.name}/></NavLink>
                                         {friend.followed ?
-                                            <button onClick={() => props.onFollowButtonCLick(friend.id)}
-                                                    className={style.item__button}>Follow</button> :
-                                            <button onClick={() => props.onFollowButtonCLick(friend.id)}
-                                                    className={style.item__button}>Unfollow</button>
+                                            <button onClick={() =>
+                                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/` + friend.id,  {
+                                                    withCredentials: true, headers: {
+                                                        "API-KEY": "6ffeb622-4cc5-475e-b725-e0a8f58b513e"
+                                                    }
+                                                }).then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.onFollowButtonCLick(friend.id)
+                                                    }
+                                                })
+                                            }
+                                                    className={style.item__button}>Unfollow</button> :
+                                            <button
+                                                onClick={() =>
+                                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + friend.id, {}, {
+                                                        withCredentials: true, headers: {
+                                                            "API-KEY": "6ffeb622-4cc5-475e-b725-e0a8f58b513e"
+                                                        }
+                                                    }).then(response => {
+                                                        if (response.data.resultCode === 0) {
+                                                            props.onFollowButtonCLick(friend.id)
+                                                        }
+                                                    })
+                                                }
+                                                className={style.item__button}>Follow</button>
                                         }
                                     </div>
                                     <div className={style.item__bio}>
@@ -71,7 +94,7 @@ let FriendsList = (props) => {
                                 <div className={style.item__status}>
                                     <p>friend.item_text</p>
                                 </div>
-                            </li></NavLink>
+                            </li>
                         )}
                 </ul>
             </div>)

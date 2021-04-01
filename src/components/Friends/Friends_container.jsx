@@ -14,7 +14,7 @@ import * as axios from "axios";
 class FriendsListApi extends React.Component {
     componentDidMount() {
         this.props.changeFetchStatus(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {withCredentials: true}).then(response => {
             this.props.setFriends(response.data.items)
             this.props.setTotalPages(response.data.totalCount)
             this.props.changeFetchStatus(false);
@@ -26,7 +26,7 @@ class FriendsListApi extends React.Component {
             this.props.onPageButtonClick(pageNumber);
             this.props.changeFetchStatus(true);
 
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true}).then(response => {
                 this.props.setFriends(response.data.items)
                 this.props.changeFetchStatus(false);
             });
@@ -37,7 +37,7 @@ class FriendsListApi extends React.Component {
         this.props.onNextPageCLick(pageNumber);
         this.props.changeFetchStatus(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true}).then(response => {
             this.props.setFriends(response.data.items)
             this.props.changeFetchStatus(false);
         });
@@ -48,7 +48,7 @@ class FriendsListApi extends React.Component {
             this.props.onPrevPageCLick(pageNumber);
             this.props.changeFetchStatus(true);
 
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true}).then(response => {
                 this.props.setFriends(response.data.items)
                 this.props.changeFetchStatus(false);
             });
