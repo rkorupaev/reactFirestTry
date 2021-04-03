@@ -8,26 +8,25 @@ import {
     setFriends,
     setTotalPages
 } from "../../redux/friendsPageReducer";
-import * as axios from "axios";
+import {usersAPI} from "../../axiosAPI/axiosAPI";
 
 
 class FriendsListApi extends React.Component {
     componentDidMount() {
         this.props.changeFetchStatus(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {withCredentials: true}).then(response => {
-            this.props.setFriends(response.data.items)
-            this.props.setTotalPages(response.data.totalCount)
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
+            this.props.setFriends(data.items)
+            this.props.setTotalPages(data.totalCount)
             this.props.changeFetchStatus(false);
-        });
+        })
     };
 
     onPageButtonClickHandler = (pageNumber) => {
         if (pageNumber !== this.props.currentPage) {
             this.props.onPageButtonClick(pageNumber);
             this.props.changeFetchStatus(true);
-
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true}).then(response => {
-                this.props.setFriends(response.data.items)
+            usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
+                this.props.setFriends(data.items)
                 this.props.changeFetchStatus(false);
             });
         }
@@ -36,9 +35,8 @@ class FriendsListApi extends React.Component {
     onNextPageCLickHandler = (pageNumber) => {
         this.props.onNextPageCLick(pageNumber);
         this.props.changeFetchStatus(true);
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true}).then(response => {
-            this.props.setFriends(response.data.items)
+        usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
+            this.props.setFriends(data.items)
             this.props.changeFetchStatus(false);
         });
     };
@@ -47,9 +45,8 @@ class FriendsListApi extends React.Component {
         if (pageNumber >= 1) {
             this.props.onPrevPageCLick(pageNumber);
             this.props.changeFetchStatus(true);
-
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {withCredentials: true}).then(response => {
-                this.props.setFriends(response.data.items)
+            usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
+                this.props.setFriends(data.items)
                 this.props.changeFetchStatus(false);
             });
         }

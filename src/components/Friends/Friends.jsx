@@ -4,6 +4,7 @@ import userDefaultIcon from "./../../img/user.png";
 import preloaderHorizontal from "./../../img/preloader.gif"
 import {NavLink} from "react-router-dom";
 import * as axios from "axios";
+import {usersAPI} from "../../axiosAPI/axiosAPI";
 
 let FriendsList = (props) => {
         let totalPageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -59,11 +60,7 @@ let FriendsList = (props) => {
                                                                                          alt={friend.name}/></NavLink>
                                         {friend.followed ?
                                             <button onClick={() =>
-                                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/` + friend.id,  {
-                                                    withCredentials: true, headers: {
-                                                        "API-KEY": "6ffeb622-4cc5-475e-b725-e0a8f58b513e"
-                                                    }
-                                                }).then(response => {
+                                                usersAPI.unfollowUser(friend.id).then(response => {
                                                     if (response.data.resultCode === 0) {
                                                         props.onFollowButtonCLick(friend.id)
                                                     }
@@ -71,12 +68,8 @@ let FriendsList = (props) => {
                                             }
                                                     className={style.item__button}>Unfollow</button> :
                                             <button
-                                                onClick={() =>
-                                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + friend.id, {}, {
-                                                        withCredentials: true, headers: {
-                                                            "API-KEY": "6ffeb622-4cc5-475e-b725-e0a8f58b513e"
-                                                        }
-                                                    }).then(response => {
+                                                onClick={() => usersAPI.followUser(friend.id)
+                                                    .then(response => {
                                                         if (response.data.resultCode === 0) {
                                                             props.onFollowButtonCLick(friend.id)
                                                         }
