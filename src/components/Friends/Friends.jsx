@@ -3,7 +3,6 @@ import style from "./Friends.module.css";
 import userDefaultIcon from "./../../img/user.png";
 import preloaderHorizontal from "./../../img/preloader.gif"
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
 import {usersAPI} from "../../axiosAPI/axiosAPI";
 
 let FriendsList = (props) => {
@@ -59,23 +58,30 @@ let FriendsList = (props) => {
                                                                                          src={friend.photos.large != null ? friend.photos.large : userDefaultIcon}
                                                                                          alt={friend.name}/></NavLink>
                                         {friend.followed ?
-                                            <button onClick={() =>
+                                            <button disabled={props.isFollowing.some(id => id == friend.id)} onClick={() => {
+                                                props.changeFollowingStatus(true, friend.id);
                                                 usersAPI.unfollowUser(friend.id).then(response => {
                                                     if (response.data.resultCode === 0) {
                                                         props.onFollowButtonCLick(friend.id)
                                                     }
-                                                })
+                                                    props.changeFollowingStatus(false, friend.id);
+                                                });
+                                            }
                                             }
                                                     className={style.item__button}>Unfollow</button> :
-                                            <button
-                                                onClick={() => usersAPI.followUser(friend.id)
-                                                    .then(response => {
-                                                        if (response.data.resultCode === 0) {
-                                                            props.onFollowButtonCLick(friend.id)
-                                                        }
-                                                    })
-                                                }
-                                                className={style.item__button}>Follow</button>
+                                            <button disabled={props.isFollowing.some(id => id == friend.id)}
+                                                    onClick={() => {
+                                                        props.changeFollowingStatus(true, friend.id);
+                                                        usersAPI.followUser(friend.id)
+                                                            .then(response => {
+                                                                if (response.data.resultCode === 0) {
+                                                                    props.onFollowButtonCLick(friend.id)
+                                                                }
+                                                                props.changeFollowingStatus(false, friend.id);
+                                                            });
+                                                    }
+                                                    }
+                                                    className={style.item__button}>Follow</button>
                                         }
                                     </div>
                                     <div className={style.item__bio}>

@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import FriendsList from "./Friends";
 import {
-    changeFetchingStatus,
+    changeFetchingStatus, changeFollowingStatus,
     changeStatus, nextPage, prevPage,
     setCurrentPage,
     setFriends,
@@ -60,7 +60,9 @@ class FriendsListApi extends React.Component {
                             onFollowButtonCLick={this.props.onFollowButtonCLick}
                             isFetching={this.props.isFetching}
                             onNextPageCLickHandler={this.onNextPageCLickHandler}
-                            onPrevPageCLickHandler={this.onPrevPageCLickHandler}/>;
+                            onPrevPageCLickHandler={this.onPrevPageCLickHandler}
+                            changeFollowingStatus={this.props.changeFollowingStatus}
+                            isFollowing={this.props.isFollowing}/>;
     }
 }
 
@@ -70,7 +72,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.friendsPage.totalUsersCount,
         pageSize: state.friendsPage.pageSize,
         currentPage: state.friendsPage.currentPage,
-        isFetching: state.friendsPage.isFetching
+        isFetching: state.friendsPage.isFetching,
+        isFollowing: state.friendsPage.isFollowing
     }
 };
 
@@ -81,7 +84,8 @@ const FriendsListContainer = connect(mapStateToProps, {
     setTotalPages,
     changeFetchStatus: changeFetchingStatus,
     onNextPageCLick: nextPage,
-    onPrevPageCLick: prevPage
+    onPrevPageCLick: prevPage,
+    changeFollowingStatus: changeFollowingStatus
 })(FriendsListApi);
 
 export default FriendsListContainer;

@@ -5,19 +5,21 @@ const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 const CHANGE_FETCH_STATUS = 'CHANGE_FETCH_STATUS';
 const NEXT_PAGE = 'NEXT_PAGE';
 const PREV_PAGE = 'PREV_PAGE';
+const CHANGE_FOLLOWING_STATUS = 'CHANGE_FOLLOWING_STATUS';
 
 let initialState = {
     friendsArray: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    isFollowing: []
 };
 
 const friendPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_FRIENDS: {
-              return {
+            return {
                 ...state, friendsArray: [...action.friendsArray]
             };
         }
@@ -56,6 +58,13 @@ const friendPageReducer = (state = initialState, action) => {
                 ...state, currentPage: action.currentPage - 1
             };
         }
+        case CHANGE_FOLLOWING_STATUS: {
+            console.log(state.isFollowing);
+            return {
+                ...state,
+                isFollowing: action.isFollowing ? [...state.isFollowing, action.userId] : state.isFollowing.filter(user => user != action.userId)
+            };
+        }
         default:
             return state;
     }
@@ -87,6 +96,10 @@ export const nextPage = (currentPage) => {
 
 export const prevPage = (currentPage) => {
     return ({type: PREV_PAGE, currentPage});
+}
+
+export const changeFollowingStatus = (isFollowing, userId) => {
+    return ({type: CHANGE_FOLLOWING_STATUS, isFollowing, userId});
 }
 
 export default friendPageReducer;
