@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Profile.module.css";
-import * as axios from "axios";
 import {setActiveUserProfile} from "../../redux/profilePageReducer";
 import {connect} from "react-redux";
 import Profile from "./Profile";
