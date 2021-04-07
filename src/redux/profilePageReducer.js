@@ -1,3 +1,5 @@
+import {usersAPI} from "../axiosAPI/axiosAPI";
+
 const ADD_TEXT_ELEMENT = 'ADD_TEXT_ELEMENT';
 const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
 const SET_ACTIVE_USER_PROFILE = 'SET_ACTIVE_USER_PROFILE';
@@ -65,6 +67,12 @@ export const changeTextarea = (text) => {
 
 export const setActiveUserProfile = (userProfile) => {
     return ({type: SET_ACTIVE_USER_PROFILE, userProfile: userProfile});
+}
+
+export const getActiveUserProfile = (userId) => (dispatch) => {
+    usersAPI.getProfile(userId).then(data => {
+        dispatch(setActiveUserProfile(data));
+    });
 }
 
 export default profilePageReducer;

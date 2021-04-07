@@ -1,18 +1,11 @@
 import React from "react";
 import LoginBlock from "./LoginBlock";
 import {connect} from "react-redux";
-import {setLoggedUserData} from "../../../redux/authReducer";
-import axios from "axios";
-import {authApi} from "../../../axiosAPI/axiosAPI";
+import {getLoggedUserData} from "../../../redux/authReducer";
 
 class LoginBlockContainer extends React.Component {
     componentDidMount() {
-        authApi.getLoggedUser().then(data => {
-            if (data.resultCode === 0) {
-                let {id, email, login} = data.data;
-                this.props.setLoggedUserData(id, email, login);
-            }
-        });
+        this.props.getLoggedUserData();
     }
 
     render() {
@@ -28,4 +21,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {setLoggedUserData})(LoginBlockContainer);
+export default connect(mapStateToProps, {getLoggedUserData})(LoginBlockContainer);
