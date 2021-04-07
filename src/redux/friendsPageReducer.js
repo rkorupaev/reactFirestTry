@@ -1,3 +1,5 @@
+import {usersAPI} from "../axiosAPI/axiosAPI";
+
 const SET_FRIENDS = 'SET_FRIENDS';
 const CHANGE_STATUS = 'CHANGE_STATUS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -59,7 +61,6 @@ const friendPageReducer = (state = initialState, action) => {
             };
         }
         case CHANGE_FOLLOWING_STATUS: {
-            console.log(state.isFollowing);
             return {
                 ...state,
                 isFollowing: action.isFollowing ? [...state.isFollowing, action.userId] : state.isFollowing.filter(user => user != action.userId)
@@ -100,6 +101,34 @@ export const prevPage = (currentPage) => {
 
 export const changeFollowingStatus = (isFollowing, userId) => {
     return ({type: CHANGE_FOLLOWING_STATUS, isFollowing, userId});
+}
+
+export const getUsers = (pageSize, currentPage) => {
+    return (dispatch) => {
+        dispatch(changeFetchingStatus(true));
+        usersAPI.getUsers(pageSize, currentPage).then(data => {
+            dispatch(setFriends(data.items));
+            dispatch(setTotalPages(data.totalCount));
+            dispatch(changeFetchingStatus(false));
+        });
+    }
+}
+
+export const setFollowStatus = (userId, followed) => {
+    return (dispatch) => {
+        dispatch(changeFollowingStatus(true, userId));
+        followed ? usersAPI.unfollowUser(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(changeStatus(userId));
+            }
+            dispatch(changeFollowingStatus(false, userId));
+        }) : usersAPI.followUser(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(changeStatus(userId));
+            }
+            dispatch(changeFollowingStatus(false, userId));
+        });
+    }
 }
 
 export default friendPageReducer;
