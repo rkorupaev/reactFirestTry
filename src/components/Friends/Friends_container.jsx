@@ -6,10 +6,8 @@ import {
     changeStatus, getUsers, nextPage, prevPage,
     setCurrentPage, setFollowStatus,
 } from "../../redux/friendsPageReducer";
-import {Redirect} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import Messages from "../Messages/Messages";
-
+import {compose} from "redux";
 
 class FriendsListApi extends React.Component {
     componentDidMount() {
@@ -61,10 +59,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-
-let authRedirectContainer = withAuthRedirect(FriendsListApi);
-
-const FriendsListContainer = connect(mapStateToProps, {
+const FriendsListContainer = compose(connect(mapStateToProps, {
     onFollowButtonCLick: changeStatus,
     onPageButtonClick: setCurrentPage,
     onNextPageCLick: nextPage,
@@ -72,6 +67,7 @@ const FriendsListContainer = connect(mapStateToProps, {
     changeFollowingStatus: changeFollowingStatus,
     getUsers,
     setFollowStatus
-})(authRedirectContainer);
+}), withAuthRedirect)(FriendsListApi);
+
 
 export default FriendsListContainer;
