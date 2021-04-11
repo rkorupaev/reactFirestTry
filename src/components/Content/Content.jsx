@@ -1,19 +1,20 @@
 import React from "react";
 import styles from "./Content.module.css";
-import {Redirect, Route} from "react-router-dom";
-import Messages from "../Messages/Messages";
+import {Route} from "react-router-dom";
 import Music from "../Music/Music";
 import Video from "../Video/Video";
 import Settings from "../Settings/Settings";
 import FriendsListContainer from "../Friends/Friends_container";
-import ProfileContainer from "../Profile/ProfileContainer";
+import Login from "../Login/Login";
+import ProfileContainerWithRouter from "../Profile/ProfileContainer";
+import {MessagesContainer} from "../Messages/Messages_Container";
 
 const Content = () => {
 
     return (
         <section className={styles.content}>
-            <Route path="/profile/:userId" render={() => <ProfileContainer/>}/>
-            <Route path="/messages" render={() => <Messages/>}/>
+            <Route path="/profile/:userId" render={() => <ProfileContainerWithRouter />}/>
+            <Route path="/messages" render={() => <MessagesContainer/>}/>
             <Route path="/friends" render={() =>
                 <FriendsListContainer/>
             }/>
@@ -24,7 +25,10 @@ const Content = () => {
             <Route path="/settings" render={() =>
                 <Settings/>
             }/>
-            {/*<Redirect from='/' to='/profile/2'/>*/}
+            <Route path="/login" render={() =>
+                <Login/>
+            }/>
+
         </section>
     );
 }

@@ -6,16 +6,13 @@ import {
     changeStatus, getUsers, nextPage, prevPage,
     setCurrentPage, setFollowStatus,
 } from "../../redux/friendsPageReducer";
+import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import Messages from "../Messages/Messages";
 
 
 class FriendsListApi extends React.Component {
     componentDidMount() {
-        // this.props.changeFetchStatus(true);
-        // usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
-        //     this.props.setFriends(data.items)
-        //     this.props.setTotalPages(data.totalCount)
-        //     this.props.changeFetchStatus(false);
-        // })
         this.props.getUsers(this.props.pageSize, this.props.currentPage);
     };
 
@@ -23,32 +20,17 @@ class FriendsListApi extends React.Component {
         if (pageNumber !== this.props.currentPage) {
             this.props.onPageButtonClick(pageNumber);
             this.props.getUsers(this.props.pageSize, pageNumber);
-            // this.props.changeFetchStatus(true);
-            // usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
-            //     this.props.setFriends(data.items)
-            //     this.props.changeFetchStatus(false);
-            // });
         }
     };
 
     onNextPageCLickHandler = (pageNumber) => {
         this.props.onNextPageCLick(pageNumber);
         this.props.getUsers(this.props.pageSize, pageNumber);
-        // this.props.changeFetchStatus(true);
-        // usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
-        //     this.props.setFriends(data.items)
-        //     this.props.changeFetchStatus(false);
-        // });
     };
 
     onPrevPageCLickHandler = (pageNumber) => {
         if (pageNumber >= 1) {
             this.props.onPrevPageCLick(pageNumber);
-            // this.props.changeFetchStatus(true);
-            // usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
-            //     this.props.setFriends(data.items)
-            //     this.props.changeFetchStatus(false);
-            // });
             this.props.getUsers(this.props.pageSize, pageNumber);
         }
     };
@@ -75,9 +57,12 @@ let mapStateToProps = (state) => {
         pageSize: state.friendsPage.pageSize,
         currentPage: state.friendsPage.currentPage,
         isFetching: state.friendsPage.isFetching,
-        isFollowing: state.friendsPage.isFollowing
+        isFollowing: state.friendsPage.isFollowing,
     }
 };
+
+
+let authRedirectContainer = withAuthRedirect(FriendsListApi);
 
 const FriendsListContainer = connect(mapStateToProps, {
     onFollowButtonCLick: changeStatus,
@@ -87,6 +72,6 @@ const FriendsListContainer = connect(mapStateToProps, {
     changeFollowingStatus: changeFollowingStatus,
     getUsers,
     setFollowStatus
-})(FriendsListApi);
+})(authRedirectContainer);
 
 export default FriendsListContainer;
