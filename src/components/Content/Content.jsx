@@ -8,29 +8,19 @@ import FriendsListContainer from "../Friends/Friends_container";
 import Login from "../Login/Login";
 import ProfileContainerWithRouter from "../Profile/ProfileContainer";
 import {MessagesContainer} from "../Messages/Messages_Container";
-import MyProfile from "../MyProfile/MyProfile";
+import MyProfile from "../Profile/MyProfile/MyProfile";
 
 const Content = () => {
-
     return (
         <section className={styles.content}>
             <Route path="/profile/:userId" render={() => <ProfileContainerWithRouter />}/>
             <Route path="/profile" render={ () => <MyProfile status__text = "Мой первый статус" />} />
             <Route path="/messages" render={() => <MessagesContainer/>}/>
-            <Route path="/friends" render={() =>
-                <FriendsListContainer/>
-            }/>
+            <Route path="/friends" render={() => <FriendsListContainer/>}/>
             <Route path="/music" render={() => <Music/>}/>
-            <Route path="/video" render={() =>
-                <Video/>
-            }/>
-            <Route path="/settings" render={() =>
-                <Settings/>
-            }/>
-            <Route path="/login" render={() =>
-                <Login/>
-            }/>
-
+            <Route path="/video" render={() => <Video/>}/>
+            <Route path="/settings" render={() => <Settings/>}/>
+            <Route path="/login" render={() => <Login/>}/>
         </section>
     );
 }

@@ -1,8 +1,9 @@
-import {usersAPI} from "../axiosAPI/axiosAPI";
+import {profileAPI, usersAPI} from "../axiosAPI/axiosAPI";
 
 const ADD_TEXT_ELEMENT = 'ADD_TEXT_ELEMENT';
 const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
 const SET_ACTIVE_USER_PROFILE = 'SET_ACTIVE_USER_PROFILE';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
     postsArray: [
@@ -23,7 +24,8 @@ let initialState = {
         }
     ],
     newText: "",
-    userProfile: null
+    userProfile: null,
+    statusText: ""
 };
 
 const profilePageReducer = (state = initialState, action) => {
@@ -52,6 +54,12 @@ const profilePageReducer = (state = initialState, action) => {
                 userProfile: action.userProfile
             };
         }
+        case SET_USER_STATUS: {
+            return {
+                ...state,
+                statusText: action.statusText
+            };
+        }
         default:
             return state;
     }
@@ -69,10 +77,29 @@ export const setActiveUserProfile = (userProfile) => {
     return ({type: SET_ACTIVE_USER_PROFILE, userProfile: userProfile});
 }
 
+export const setUserStatus = (statusText) => {
+    return ({type: SET_USER_STATUS, statusText: statusText});
+}
+
 export const getActiveUserProfile = (userId) => (dispatch) => {
     usersAPI.getProfile(userId).then(data => {
         dispatch(setActiveUserProfile(data));
     });
 }
+
+export const getUserStatus = (userId) => (dispatch) => {
+    profileAPI.getProfileStatus(userId).then(data => {
+        dispatch(setUserStatus(data));
+    });
+}
+
+export const updateUserStatus = (statusText) => (dispatch) => {
+    profileAPI.updateProfileStatus(statusText).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatus(statusText));
+        }
+    });
+}
+
 
 export default profilePageReducer;

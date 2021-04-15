@@ -21,16 +21,31 @@ export const usersAPI = {
         return axiosInstance.delete(`follow/` + userId);
     },
     getProfile(userId) {
+        return profileAPI.getProfile(userId);
+    }
+}
+
+export const profileAPI = {
+
+    getProfile(userId) {
         return axiosInstance.get(`profile/` + userId).then(response => {
             return response.data;
         });
+    },
+    getProfileStatus(userId) {
+        return axiosInstance.get(`/profile/status/` + userId).then(response => {
+            return response.data;
+        });
+    },
+    updateProfileStatus(statusText) {
+        return axiosInstance.put(`/profile/status`, {statusText: statusText});
     }
 }
 
 export const authApi = {
-    getLoggedUser () {
+    getLoggedUser() {
         return axiosInstance.get(`auth/me`).then(response => {
-           return response.data;
+            return response.data;
         });
     }
 }
