@@ -1,36 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import style from './MyProfile.module.css';
 
-class MyProfile extends React.Component {
+const MyProfile = (props) => {
+    const [isEditActive, setIsEditActive] = useState(false);
 
-    state = {
-        isEditActive: false
-    }
+    return (
+        <div>
+            <h1>Мой профиль</h1>
+            {!isEditActive ?
+                <p onDoubleClick={() => setIsEditActive(true)}>Мой
+                    статус: <span>{props.statusText}</span></p> :
+                <input autoFocus={true} onBlur={() => setIsEditActive(false)} placeholder="Тут будет мой статус"
+                       value={props.statusText}/>}
+        </div>
+    )
 
-    onStatusDoubleClickHandler = () => {
-        this.setState({
-            isEditActive: true
-        });
-    }
-
-    onOutOfStatusClickHandler = () => {
-        this.setState({
-            isEditActive: false
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>Мой профиль</h1>
-                {!this.state.isEditActive ?
-                    <p onDoubleClick={this.onStatusDoubleClickHandler}>Мой
-                        статус: <span>{this.props.status__text}</span></p> :
-                    <input autoFocus={true} onBlur={this.onOutOfStatusClickHandler} placeholder="Тут будет мой статус"
-                           value={this.props.status__text}/>}
-            </div>
-        )
-    }
 }
 
 
