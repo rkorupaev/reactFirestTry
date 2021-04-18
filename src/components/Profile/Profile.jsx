@@ -13,7 +13,7 @@ const Profile = (props) => {
 
     return (
         <div className={styles.profile}>
-            <Profile_card userProfile={props.userProfile}/>
+            <Profile_card userProfile={props.userProfile} userStatus={props.userStatus}/>
             <Profile_feed/>
         </div>
     );

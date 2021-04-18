@@ -6,6 +6,7 @@ const Profile_bio = (props) => {
         <div className={styles.profile_bio}>
             <h2>{props.bio.fullName}</h2>
             <p>{props.bio.aboutMe}</p>
+            <p>{props.userStatus}</p>
         </div>
     );
 }

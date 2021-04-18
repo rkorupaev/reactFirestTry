@@ -33,13 +33,12 @@ export const profileAPI = {
         });
     },
     getProfileStatus(userId) {
-        return axiosInstance.get(`/profile/status/` + userId).then(response => {
-            debugger
+        return axiosInstance.get(`/profile/status/${userId}`).then(response => {
             return response.data;
         });
     },
-    updateProfileStatus(statusText) {
-        return axiosInstance.put(`/profile/status`, {statusText: statusText});
+    updateProfileStatus(status) {
+        return axiosInstance.put(`/profile/status/`, {status: status});
     }
 }
 

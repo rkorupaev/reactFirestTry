@@ -7,7 +7,7 @@ const Profile_card = (props) => {
     return (
         <div className={styles.profile_card}>
             <Profile_avatar avatar={props.userProfile.photos}/>
-            <Profile_bio bio={props.userProfile}/>
+            <Profile_bio bio={props.userProfile} userStatus={props.userStatus}/>
         </div>
     );
 }

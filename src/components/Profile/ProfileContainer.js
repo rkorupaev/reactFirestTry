@@ -16,7 +16,6 @@ class ProfileContainer extends React.Component {
 
 
     render() {
-        debugger
         return (
             <div className={styles.profile}>
                 <Profile {...this.props} userProfile={this.props.userProfile}/>
