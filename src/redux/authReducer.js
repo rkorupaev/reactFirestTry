@@ -3,7 +3,7 @@ import {authApi} from "../axiosAPI/axiosAPI";
 const SET_LOGGED_USER_DATA = 'SET_LOGGED_USER_DATA';
 
 let initialState = {
-    id: 16224,
+    id: null,
     email: null,
     login: null,
     isLogged: false

@@ -3,7 +3,6 @@ import style from "./Friends.module.css";
 import userDefaultIcon from "./../../img/user.png";
 import preloaderHorizontal from "./../../img/preloader.gif"
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../axiosAPI/axiosAPI";
 
 let FriendsList = (props) => {
         let totalPageCount = Math.ceil(props.totalUsersCount / props.pageSize);

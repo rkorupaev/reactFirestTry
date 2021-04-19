@@ -6,10 +6,9 @@ import {getUserStatus, updateUserStatus} from "../../../redux/profilePageReducer
 const MyProfileContainer = (props) => {
     const [status, setStatus] = useState(props.statusText);
 
-    setTimeout(useEffect(() => {
+    useEffect(() => {
         props.getUserStatus(props.userId);
-    }, []), 1000)
-
+    }, props.userId);
 
     useEffect(() => {
         setStatus(props.statusText);
@@ -17,8 +16,7 @@ const MyProfileContainer = (props) => {
 
 
     return (
-        <MyProfile statusText={status} updateUserStatus={props.updateUserStatus} userId={props.userId}
-                   setStatus={setStatus}/>
+        <MyProfile statusText={props.statusText} updateUserStatus={props.updateUserStatus} userId={props.userId}/>
     );
 };
 
