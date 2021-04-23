@@ -11,11 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onButtonClickHandler: () => {
-            dispatch(addTextElement())
-        },
-        textareaOnChangeHandler: (text) => {
-            dispatch(changeTextarea(text))
+        onButtonClickHandler: (text) => {
+            dispatch(addTextElement(text))
         }
     };
 };

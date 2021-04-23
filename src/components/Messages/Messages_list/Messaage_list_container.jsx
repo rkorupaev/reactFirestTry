@@ -1,7 +1,7 @@
 import React from "react";
-import Message_list from "./Messaage_list";
 import {connect} from "react-redux";
 import {addMessageElement, changeMessageTextarea} from "../../../redux/dialogPageReducer";
+import MessageList from "./Messaage_list";
 
 const mapStateToProps = (state) => {
     return {
@@ -13,6 +13,6 @@ const mapStateToProps = (state) => {
 const Message_list_container = connect(mapStateToProps, {
     onMessageTextareaChange: changeMessageTextarea,
     onButtonCLickHandler: addMessageElement
-})(Message_list);
+})(MessageList);
 
 export default Message_list_container;

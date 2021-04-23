@@ -31,9 +31,9 @@ let initialState = {
 const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TEXT_ELEMENT: {
-            let newElement = {
+             let newElement = {
                 id: state.postsArray.length + 1,
-                post_text: state.newText,
+                post_text: action.text.post,
                 posts_likes: 0
             };
             return {
@@ -65,8 +65,8 @@ const profilePageReducer = (state = initialState, action) => {
     }
 };
 
-export const addTextElement = () => {
-    return ({type: ADD_TEXT_ELEMENT});
+export const addTextElement = (text) => {
+    return ({type: ADD_TEXT_ELEMENT, text: text});
 }
 
 export const changeTextarea = (text) => {

@@ -46,7 +46,7 @@ const dialogPageReducer = (state = initialState, action) => {
         case ADD_TEXT_TEXTAREA_MESSAGE: {
             let newElement = {
                 id: state.messagesArray.length + 1,
-                item_text: state.newMessage
+                item_text: action.text.messageText
             };
             return {
                 ...state,
@@ -65,8 +65,8 @@ const dialogPageReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessageElement = () => {
-    return ({type: ADD_TEXT_TEXTAREA_MESSAGE});
+export const addMessageElement = (text) => {
+    return ({type: ADD_TEXT_TEXTAREA_MESSAGE, text: text});
 }
 
 export const changeMessageTextarea = (text) => {

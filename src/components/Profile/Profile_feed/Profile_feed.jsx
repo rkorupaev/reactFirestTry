@@ -7,7 +7,6 @@ const Profile_feed = (props) => {
     return (
         <div className={styles.profile_feed}>
             <h2>Лента новостей</h2>
-            <ProfileTextareaContainer/>
             <Profile_posts_container/>
         </div>
     );

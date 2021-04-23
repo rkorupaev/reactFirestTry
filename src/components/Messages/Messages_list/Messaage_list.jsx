@@ -1,28 +1,37 @@
 import React from "react";
 import styles from "./Message_list.module.css";
 import Message_item from "./Message_item/Message_item";
+import {Field, Form} from "react-final-form";
+import style from "../../Login/Login.module.css";
 
-const Message_list = (props) => {
 
-    let messageItemArray = props.messagesArray.map(message => <Message_item key={message.id} item_text={message.item_text}/>);
+const MessageListForm = (props) => {
 
-    let newMessageElement = React.createRef();
-
-    const onButtonCLickHandler = () => {
-        props.onButtonCLickHandler();
-    };
-
-    const onMessageTextareaChange = () => {
-        props.onMessageTextareaChange(newMessageElement.current.value);
+    const onSubmit = (values) => {
+        props.onButtonCLickHandler(values);
     };
 
     return (
+        <Form
+            onSubmit={onSubmit}
+            render={({handleSubmit, values, reset}) => (
+                <form className={style.loginForm} onSubmit={handleSubmit}>
+                    <label>Текст сообщения:</label>
+                    <Field name="messageText" component="textarea" placeholder="Ввведите сообщение"/>
+                    <button className={style.loginForm__button} type={"submit"}>Send message</button>
+                </form>
+            )}
+        />
+    );
+}
+
+const MessageList = (props) => {
+
+    let messageItemArray = props.messagesArray.map(message => <Message_item key={message.id} item_text={message.item_text}/>);
+
+    return (
         <div className={styles.messageTextarea_wrapper}>
-            <div className={styles.messageTextarea}>
-                <textarea ref={newMessageElement} onChange={onMessageTextareaChange}
-                          value={props.newMessage} placeholder="Пиши здесь"/>
-                <button onClick={onButtonCLickHandler}>Send</button>
-            </div>
+            <MessageListForm onButtonCLickHandler={props.onButtonCLickHandler}/>
             <ul className={styles.messages_list}>
                 {messageItemArray}
             </ul>
@@ -30,4 +39,4 @@ const Message_list = (props) => {
     );
 }
 
-export default Message_list;
+export default MessageList;
