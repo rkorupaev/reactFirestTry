@@ -1,7 +1,6 @@
 import {profileAPI, usersAPI} from "../axiosAPI/axiosAPI";
 
 const ADD_TEXT_ELEMENT = 'ADD_TEXT_ELEMENT';
-const CHANGE_TEXTAREA = 'CHANGE_TEXTAREA';
 const SET_ACTIVE_USER_PROFILE = 'SET_ACTIVE_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
@@ -23,7 +22,6 @@ let initialState = {
             posts_likes: "135"
         }
     ],
-    newText: "",
     userProfile: null,
     statusText: ""
 };
@@ -40,12 +38,6 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 postsArray: [newElement, ...state.postsArray],
                 newText: ''
-            };
-        }
-        case CHANGE_TEXTAREA: {
-            return {
-                ...state,
-                newText: action.change
             };
         }
         case SET_ACTIVE_USER_PROFILE: {
@@ -67,10 +59,6 @@ const profilePageReducer = (state = initialState, action) => {
 
 export const addTextElement = (text) => {
     return ({type: ADD_TEXT_ELEMENT, text: text});
-}
-
-export const changeTextarea = (text) => {
-    return ({type: CHANGE_TEXTAREA, change: text});
 }
 
 export const setActiveUserProfile = (userProfile) => {

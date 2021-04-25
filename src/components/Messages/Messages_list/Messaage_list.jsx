@@ -3,7 +3,8 @@ import styles from "./Message_list.module.css";
 import Message_item from "./Message_item/Message_item";
 import {Field, Form} from "react-final-form";
 import style from "../../Login/Login.module.css";
-
+import {Textarea} from "../../Forms/Forms";
+import {setMaxLength} from "../../Assets/Validators/Validators";
 
 const MessageListForm = (props) => {
 
@@ -17,7 +18,7 @@ const MessageListForm = (props) => {
             render={({handleSubmit, values, reset}) => (
                 <form className={style.loginForm} onSubmit={handleSubmit}>
                     <label>Текст сообщения:</label>
-                    <Field name="messageText" component="textarea" placeholder="Ввведите сообщение"/>
+                    <Field name="messageText" component={Textarea} placeholder="Ввведите сообщение" validate={setMaxLength(100)}/>
                     <button className={style.loginForm__button} type={"submit"}>Send message</button>
                 </form>
             )}

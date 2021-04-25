@@ -1,12 +1,10 @@
 import React from "react";
-import {addTextElement, changeTextarea} from "../../../../redux/profilePageReducer";
+import {addTextElement} from "../../../../redux/profilePageReducer";
 import ProfileTextarea from "./Profile_textarea";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
-    return {
-        newText: state.profilePage.newText
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

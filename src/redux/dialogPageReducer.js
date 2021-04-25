@@ -1,5 +1,4 @@
 const ADD_TEXT_TEXTAREA_MESSAGE = 'ADD_TEXT_TEXTAREA_MESSAGE';
-const CHANGE_TEXTAREA_MESSAGE = 'CHANGE_TEXTAREA_MESSAGE';
 
 let initialState = {
     messagesArray: [
@@ -37,8 +36,7 @@ let initialState = {
             item_name: "Igor",
             item_id: "6"
         }
-    ],
-    newMessage: ""
+    ]
 };
 
 const dialogPageReducer = (state = initialState, action) => {
@@ -54,12 +52,6 @@ const dialogPageReducer = (state = initialState, action) => {
                 newMessage: ''
             };
         }
-        case CHANGE_TEXTAREA_MESSAGE: {
-            return {
-                ...state,
-                newMessage: action.change
-            };
-        }
         default:
             return state;
     }
@@ -67,10 +59,6 @@ const dialogPageReducer = (state = initialState, action) => {
 
 export const addMessageElement = (text) => {
     return ({type: ADD_TEXT_TEXTAREA_MESSAGE, text: text});
-}
-
-export const changeMessageTextarea = (text) => {
-    return ({type: CHANGE_TEXTAREA_MESSAGE, change: text});
 }
 
 export default dialogPageReducer;
