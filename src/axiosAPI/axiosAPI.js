@@ -26,7 +26,6 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-
     getProfile(userId) {
         return axiosInstance.get(`profile/` + userId).then(response => {
             return response.data;
@@ -47,5 +46,11 @@ export const authApi = {
         return axiosInstance.get(`auth/me`).then(response => {
             return response.data;
         });
+    },
+    logIn(email, password, rememberMe = false) {
+        return axiosInstance.post(`/auth/login`, {email, password, rememberMe});
+    },
+    logOut() {
+        return axiosInstance.delete(`/auth/login`);
     }
 }
