@@ -1,7 +1,7 @@
 import React from "react";
 import LoginBlock from "./LoginBlock";
 import {connect} from "react-redux";
-import {getLoggedUserData} from "../../../redux/authReducer";
+import {getLoggedUserData, logOut} from "../../../redux/authReducer";
 
 class LoginBlockContainer extends React.Component {
     componentDidMount() {
@@ -21,4 +21,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getLoggedUserData})(LoginBlockContainer);
+export default connect(mapStateToProps, {getLoggedUserData, logOut})(LoginBlockContainer);

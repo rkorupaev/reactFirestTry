@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "./Login.module.css";
 import {Form, Field} from "react-final-form";
 import {required} from "../Assets/Validators/Validators";
@@ -29,7 +29,7 @@ const Login = (props) => {
     }
 
     if (props.isLogged) {
-        return <Redirect to="/profile"/>
+        return <Redirect to={"/profile"}/>
     }
 
     return (

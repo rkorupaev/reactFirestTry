@@ -35,16 +35,16 @@ export const getLoggedUserData = () => (dispatch) => {
 }
 
 export const logIn = (email, password, rememberMe) => (dispatch) => {
-    authApi.logIn(email, password, rememberMe).then(data => {
-        if (data.resultCode === 0) {
+    authApi.logIn(email, password, rememberMe).then(response => {
+        if (response.data.resultCode === 0) {
             dispatch(getLoggedUserData());
         }
     });
 }
 
 export const logOut = () => (dispatch) => {
-    authApi.logOut().then(data => {
-        if (data.resultCode === 0) {
+    authApi.logOut().then(response => {
+        if (response.data.resultCode === 0) {
             dispatch(setLoggedUserData(null, null, null, false));
         }
     });
