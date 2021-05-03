@@ -5,4 +5,30 @@
 
 .loginForm__button {
     width: 100px;
+    min-height: 30px;
+    background-color: #bd9354;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+}
+
+.loginForm__button:hover,
+.loginForm__button:focus {
+    background-color: #a47c45;
+}
+
+.loginForm__button:active {
+    transform: scale(0.9);
+}
+
+.loginForm__label {
+    display: flex;
+    margin-bottom: 5px;
+    min-height: 25px;
+    min-width: 100px;
+}
+
+.loginForm__input {
+    margin-left: 10px;
 }

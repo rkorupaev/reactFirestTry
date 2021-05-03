@@ -10,13 +10,14 @@ import {Redirect} from "react-router-dom";
 const LoginForm = (props) => (
     <Form
         onSubmit={props.onSubmit}
-        render={({handleSubmit, values}) => (
+        render={({handleSubmit, values, submitError}) => (
             <form className={style.loginForm} onSubmit={handleSubmit}>
-                <label>Login: <Field name={"email"} placeholder={"Email"} component={Input} type={"text"}
-                                     validate={required}/></label>
-                <label>Password: <Field name={"password"} placeholder={"Password"} component={Input}
+                <label className={style.loginForm__label}>Login: <Field className={style.loginForm__input} name={"email"} placeholder={"Email"} component={Input} type={"text"}
+                                     validate={required}/>
+                <label className={style.loginForm__label}>Password: <Field className={style.loginForm__input} name={"password"} placeholder={"Password"} component={Input}
                                         type={"password"} validate={required}/></label>
-                <label>Remember me: <Field name={"remembered"} type={"checkbox"} component={Input}/></label>
+                <label className={style.loginForm__label}>Remember me: <Field name={"remembered"} type={"checkbox"} component={Input}/></label>
+                {submitError && <div className="error">{submitError}</div>}
                 <button className={style.loginForm__button} type={"submit"}>Enter Network</button>
             </form>
         )}
