@@ -18,7 +18,8 @@ const MessageListForm = (props) => {
             render={({handleSubmit, values, reset}) => (
                 <form className={style.loginForm} onSubmit={handleSubmit}>
                     <label>Текст сообщения:</label>
-                    <Field name="messageText" component={Textarea} placeholder="Ввведите сообщение" validate={setMaxLength(100)}/>
+                    <Field name="messageText" component={Textarea} placeholder="Ввведите сообщение"
+                           validate={setMaxLength(100)}/>
                     <button className={style.loginForm__button} type={"submit"}>Send message</button>
                 </form>
             )}
@@ -28,7 +29,8 @@ const MessageListForm = (props) => {
 
 const MessageList = (props) => {
 
-    let messageItemArray = props.messagesArray.map(message => <Message_item key={message.id} item_text={message.item_text}/>);
+    let messageItemArray = props.messagesArray.map(message => <Message_item key={message.id}
+                                                                            item_text={message.item_text}/>);
 
     return (
         <div className={styles.messageTextarea_wrapper}>

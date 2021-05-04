@@ -13,7 +13,7 @@ const LoginForm = (props) => (
         render={({handleSubmit, values, submitError}) => (
             <form className={style.loginForm} onSubmit={handleSubmit}>
                 <label className={style.loginForm__label}>Login: <Field className={style.loginForm__input} name={"email"} placeholder={"Email"} component={Input} type={"text"}
-                                     validate={required}/>
+                                     validate={required}/></label>
                 <label className={style.loginForm__label}>Password: <Field className={style.loginForm__input} name={"password"} placeholder={"Password"} component={Input}
                                         type={"password"} validate={required}/></label>
                 <label className={style.loginForm__label}>Remember me: <Field name={"remembered"} type={"checkbox"} component={Input}/></label>

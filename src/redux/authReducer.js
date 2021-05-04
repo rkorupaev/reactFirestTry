@@ -26,7 +26,7 @@ export const setLoggedUserData = (id, email, login, isLogged) => {
 }
 
 export const getLoggedUserData = () => (dispatch) => {
-    authApi.getLoggedUser().then(data => {
+    return authApi.getLoggedUser().then(data => {
         if (data.resultCode === 0) {
             let {id, email, login} = data.data;
             dispatch(setLoggedUserData(id, email, login, true));

@@ -11,3 +11,26 @@
 .loginBlock:focus {
     transform: scale(1.1);
 }
+
+.loginBlock__userEmail {
+    margin-bottom: 10px;
+}
+
+.loginBlock__button {
+    width: 100px;
+    min-height: 30px;
+    background-color: #bd9354;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+}
+
+.loginBlock__button:hover,
+.loginBlock__button:focus {
+    background-color: #a47c45;
+}
+
+.loginBlock__button:active {
+    transform: scale(0.9);
+}

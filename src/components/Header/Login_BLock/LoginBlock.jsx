@@ -8,8 +8,8 @@ const LoginBlock = (props) => {
             {props.isLogged === true ?
                 <div>
                     <h2>{props.loggedUserName}</h2>
-                    <p>{props.loggedUserEmail}</p>
-                    <button onClick={props.logOut}>Logout</button>
+                    <p className={style.loginBlock__userEmail}>{props.loggedUserEmail}</p>
+                    <button className={style.loginBlock__button} onClick={props.logOut}>Logout</button>
                 </div>
                 :
                 <div className={style.loginBlock}>

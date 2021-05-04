@@ -1,6 +1,7 @@
 .loginForm {
     display: flex;
     flex-direction: column;
+    max-width: 360px;
 }
 
 .loginForm__button {
